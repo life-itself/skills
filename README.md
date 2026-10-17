@@ -1,6 +1,8 @@
 # Skills
 
-Agent skills and recipes used by Rufus Pollock and Life Itself. Each skill is a folder in `skills/` with a `SKILL.md`, and works in both Claude Code and Codex.
+Agent skills and recipes used by Rufus Pollock and Life Itself, in one place so they can be installed, improved and shared together. Each skill is a folder in `skills/` with a `SKILL.md`, and works in both Claude Code and Codex.
+
+**Purpose:** one canonical home (not scattered across repos), easy to install everywhere, public so others can use and learn from them. Recent changes are in [changelog/](changelog/); the plan of work is in Beads (`bd list`).
 
 ## Install
 
