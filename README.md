@@ -1,4 +1,22 @@
-Agent skills / recipes I regularly use.
+# Skills
+
+Agent skills and recipes used by Rufus Pollock and Life Itself. Each skill is a folder in `skills/` with a `SKILL.md`, and works in both Claude Code and Codex.
+
+## Install
+
+See [docs/install.md](docs/install.md). Short version: `npx skills add life-itself/skills -g`, or clone and symlink `skills/<name>` into `~/.claude/skills/` and `~/.agents/skills/`. Repo-bound skills (marked below) install per repo instead.
+
+## Skills
+
+| Skill | What it does |
+|---|---|
+| [changelog](skills/changelog/SKILL.md) | Write a changelog entry at the end of a session that shipped something reader-facing. Fetches the current convention from [life-itself/changelog](https://github.com/life-itself/changelog). |
+| [changelog-rollup](skills/changelog-rollup/SKILL.md) | Roll the week's project changelog entries into one draft and handle anything flagged for promotion. *Repo-bound (planning repo).* |
+| [plan-for-delegation](skills/plan-for-delegation/SKILL.md) | Choose what to work on next across a portfolio, or specify selected work for eventual AI delegation. |
+| [planning](skills/planning/SKILL.md) | Plan the week, the day, or the next hour from the portfolio and calendar. *Repo-bound (planning repo).* |
+| [portfolio](skills/portfolio/SKILL.md) | Add to, update and tidy a project/initiative portfolio. *Repo-bound (planning repo).* |
+| [project-planning](skills/project-planning/SKILL.md) | Plan big or new work properly: interview-style SCQ and issue tree, sign-off, then hand off to a Logical Thinking Process session. |
+| [session-checkpoint](skills/session-checkpoint/SKILL.md) | Turn a stopping point into a durable next-action checkpoint so work survives the session. |
 
 ## Recipes
 
