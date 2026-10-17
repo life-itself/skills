@@ -19,9 +19,9 @@ Give people a **mindmap of the argument**: the question at the root on the left,
 From the Markdown tree, write a JSON file (schema below). For each node:
 
 - **Root** (`label`, optional `note`): the question, short. A second half of the question can go in `note` (grey).
-- **Level 1** (`label`, `text`, optional `note`): the pillars. `label` is the 2–6 words a skimmer reads (set in Mittel); `text` continues the sentence or gives the answer (Regular); `note` is grey — use it for the sub-question when the map shows questions and answers together.
+- **Level 1** (`label`, `text`, optional `note`): the pillars. `label` is the 2–6 words a skimmer reads (set in Mittel); `text` continues the sentence or gives the answer (Regular); `note` is grey and sits *above* the label — use it for the sub-question when the map shows questions and answers together.
 - **Level 2+** (`text`): one assertion each, ≤ ~14 words.
-- **Title** (top left, the claim if there is one) and **subtitle** (grey: what it means, or why, in one sentence). **Footer** (bottom right): author · project · status and date. **Alt**: what the map claims, in a few sentences.
+- **Title** (top left, the claim if there is one) and **subtitle** (grey: what it means, or why, in one sentence; it wraps at 1100 px, so aim for one line). **Footer** (bottom right): author · project · status and date. **Alt**: what the map claims, in a few sentences.
 
 Rules:
 
@@ -45,13 +45,13 @@ Writes `map.svg` (real text, Apfel embedded, renders anywhere) and `map.png` (2x
 Read the PNG. Check:
 
 - [ ] The root and the level-1 labels read in ten seconds as the shape of the argument.
-- [ ] Curves are relaxed S-shapes, not near-vertical; no line crosses text.
+- [ ] The root fan is relaxed, not near-vertical (horizontal run at least half the vertical spread); no line crosses text.
 - [ ] Line breaks fall at phrase boundaries; no one-word last lines.
-- [ ] Red only on the root dot and the one branch that matters.
+- [ ] Red only on the root seed and the one branch that matters.
 - [ ] Every string traces to the source; qualifiers intact.
 - [ ] Title, subtitle, footer present; the status says draft if it is.
 
-Fixes, in order: shorten text; change a wrap width or gap in `config`; only then change the defaults in `mindmap.js`. If `map too wide`, narrow `config.wrap` or shorten the longest nodes.
+Fixes, in order: shorten text; change a wrap width or gap in `config`; only then change the defaults in `mindmap.js`. The canvas widens to fit the map (at least 1600 px); past 2000 px the script warns, because text gets small when shared: shorten text or narrow `config.wrap`.
 
 For a stronger check, show a fresh subagent only the PNG and ask: what is the main claim, what are the reasons, what question does it answer, what did you skip?
 
@@ -63,7 +63,7 @@ For a stronger check, show a fresh subagent only the PNG and ask: what is the ma
   "subtitle": "One grey sentence: what it means, or why.",
   "footer": "Author · Project · Draft, October 2026",
   "alt": "What the map claims.",
-  "config": {"width": 1600, "wrap": [300, 420, 480, 440], "gapX": [150, 96, 72], "gapY": [0, 34, 12, 10]},
+  "config": {"wrap": [380, 470, 440, 420], "gapX": [300, 110, 80], "gapY": [0, 24, 20, 14]},
   "root": {
     "label": "How fast should we develop AI?",
     "note": "optional grey second line",
@@ -77,11 +77,11 @@ For a stronger check, show a fresh subagent only the PNG and ask: what is the ma
 }
 ```
 
-`config` is optional: `wrap` is the maximum text width per depth (root, level 1, level 2, level 3), `gapX` the room for curves after each depth, `gapY` the gap between siblings at each depth. Width 1600 suits sharing and slides; the height follows the content. A full example: [examples/q2-mindmap.json](examples/q2-mindmap.json).
+`config` is optional (the values shown are the defaults): `wrap` is the maximum text width per depth (root, level 1, level 2, level 3), `gapX` the room for curves after each depth, `gapY` the gap between siblings at each depth; `width` fixes the canvas (default: fit the map, at least 1600). The height follows the content. Text is balance-wrapped (lines of even length). A full example: [examples/q2-mindmap.json](examples/q2-mindmap.json).
 
 ## Files
 
 - [PRINCIPLES.md](PRINCIPLES.md): why it looks like this.
 - [scripts/mindmap.sh](scripts/mindmap.sh): JSON → SVG + PNG via headless Chrome.
-- [scripts/mindmap.js](scripts/mindmap.js): the layout (left-to-right tidy tree, cubic curves, tapering strokes, text wrapping, overflow check) and drawing.
+- [scripts/mindmap.js](scripts/mindmap.js): the layout (left-to-right tidy tree, shared fan origins, tapering ribbon curves, balanced text wrapping, width check) and drawing.
 - [fonts/](fonts/): Apfel Grotezk Regular and Mittel (SIL OFL).
