@@ -1,0 +1,7 @@
+/Users/rgrp/src/rufuspollock/planning/projects/2026-reports-that-matter-v2-launch.md
+/Users/rgrp/src/reportsthatmatter/reportsthatmatter/docs/NOW.md
+/Users/rgrp/src/reportsthatmatter/reportsthatmatter/docs/PRODUCT.md
+/Users/rgrp/src/reportsthatmatter/reportsthatmatter/docs/MARKETING.md
+/Users/rgrp/src/reportsthatmatter/reportsthatmatter/docs/ROADMAP.md
+/Users/rgrp/src/reportsthatmatter/reportsthatmatter/docs/PROGRESS.md
+/private/tmp/claude-502/-Users-rgrp-src-rufuspollock-planning/ea684e8c-f8a6-4bf4-9bdf-685e087fb1e0/scratchpad/rtm-beads.txt

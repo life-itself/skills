@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Checkpoint"
+  short_description: "Checkpoint the next action when stopping AI work"
+  default_prompt: "Checkpoint this session and update the project NEXT.md."

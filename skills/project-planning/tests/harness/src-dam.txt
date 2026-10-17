@@ -1,0 +1,7 @@
+/Users/rgrp/src/rufuspollock/planning/projects/2026-life-itself-dam.md
+/Users/rgrp/src/life-itself/dam/README.md
+/Users/rgrp/src/life-itself/dam/MOTIVATION.md
+/Users/rgrp/src/life-itself/dam/PLAN.md
+/Users/rgrp/src/life-itself/dam/what-we-want.md
+/Users/rgrp/src/life-itself/dam/jobs-to-be-done.md
+/Users/rgrp/src/life-itself/dam/image-storage.md

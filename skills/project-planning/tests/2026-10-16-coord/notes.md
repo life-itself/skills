@@ -1,0 +1,22 @@
+# Interviewer notes — coord test run, 2026-10-16
+
+Turns: 11 interviewer/Rufus exchanges (situation 2, complication 3, question + criteria 3, tree 1, sign-off 2) plus the hand-off message. About 15 minutes wall time, almost all of it sim latency. Sign-off refused once ("Yes, broadly" + one edit), accepted on the second ask.
+
+## Where the skill was unclear or awkward
+
+1. **The owner doesn't know the situation, and the skill has no move for that.** For a team process, the facts that matter (do standups happen, which topics move) are held by Asdra and Fae, not Rufus. Every answer came back "I'm not sure what it looks like day to day". The skill assumes the user is the source of facts. It needs a branch: when the owner can't state the situation, either (a) say what's needed and pause to ask the people who know, or (b) record the unknown as a tree question ("what is actually happening?") and carry on. I did (b), so branch 1 of the tree is fact-finding, not a planning question, which strains rubric Q3/T1.
+2. **Step 1 says read "the bead", step 2 says ask the user — conflict when the bead and the user disagree.** `lip-jkp`'s close reason (25 Sep) says Asdra and Fae "are working on it". I put that in the situation; Rufus struck it at sign-off as unevidenced. "Never ask for what you can read" plus "situation = facts both agree" gives no guidance on stale or second-hand repo facts. Suggest: date-stamp facts taken from files, and play those back explicitly as "the repo says X as of <date> — still true?".
+3. **Criteria step pushes the user to invent numbers.** The sim marked both "by when" and "effort" as [GUESS]. The skill says a question without criteria isn't ready, but doesn't say what to do with guessed criteria. I labelled them "(Rufus's guess)" in the file. The skill should say whether guessed criteria are acceptable for sign-off, or whether to leave them as a tree question.
+4. **Step 6 and step 7 merge naturally.** "Show the path, say what you left out" and then "ask exactly: Sign off…?" become one message in practice. Fine, but the skill reads as if they are separate turns. Also: the user can't see the file in a chat-only setting, so I pasted it in full; the skill should say to show the content (or a diff on re-ask), not just the path.
+5. **Situation question wording.** I adapted "Tell me about the situation. What are you working on and what is true today?" to "what is the team operating rhythm today, in practice?" because the generic wording invites a project description I had already read. The skill's own "if context files already hold a lot, say what you've read and ask what's missing" conflicts with asking the generic situation question verbatim. Allow tailoring.
+6. **My first question draft had "…and decisions and follow-ups reliably get recorded"** — two questions joined by "and" (rubric Q1). Caught on playback by rewording into one "so that we can see…" list. Worth a line in step 4: check for "and" before proposing.
+7. **Output location for a team process is ambiguous.** The skill says "destination repo", but this project's `workspace:` is `~/src/life-itself/ops` while the team planning lives in `~/src/life-itself/planning`, and CLAUDE.md says keep `lip-*` team work in life-itself/planning. I named `life-itself/planning/docs/plans/` in the hand-off. The skill should say: for a team process, the team's planning repo, not the project's code/ops workspace.
+8. **Status vocabulary vs repo convention.** The skill says decided/proposed/open; life-itself/planning's workflow (12 Oct) records decisions as "✅ answer, who, date". I nearly marked "where are decisions recorded" as partly decided from that doc; Rufus kept it open. The skill doesn't say whether an existing team convention counts as "decided".
+9. **Probe in step 3 produced the useful content** ("who feels it" → Rufus feels it most). The first complication answer was a feature-ish list ("whether we need a changelog"); parking it as a tree question worked well.
+10. **Step 8 "start a new session in <repo>"** — for this case the hand-off repo (life-itself/planning) differs from where the skill was run (personal planning). Fine, but worth an explicit note that `ltp-project` must be available there.
+
+## Improvised
+- Tailored the situation question (see 5).
+- Labelled sim guesses as "(Rufus's guess)" in the file.
+- Pasted the full file into the sign-off message and summarised the diff on re-ask.
+- Wrote the SCQ to the test folder instead of `docs/plans/` per test instructions; hand-off names the would-be path.
