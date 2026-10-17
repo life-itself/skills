@@ -16,11 +16,10 @@ See [docs/install.md](docs/install.md). Short version: `npx skills add life-itse
 | [planning](skills/planning/SKILL.md) | Plan the week, the day, or the next hour from the portfolio and calendar. *Repo-bound (planning repo).* |
 | [portfolio](skills/portfolio/SKILL.md) | Add to, update and tidy a project/initiative portfolio. *Repo-bound (planning repo).* |
 | [project-planning](skills/project-planning/SKILL.md) | Plan big or new work properly: interview-style SCQ and issue tree, sign-off, then hand off to a Logical Thinking Process session. |
-| [session-checkpoint](skills/session-checkpoint/SKILL.md) | Turn a stopping point into a durable next-action checkpoint so work survives the session. |
 
 ## Recipes
 
-- [Session handoff: the focus-label pattern](session-handoff.md): close one agent session and start the next without handoff files (a static AGENTS.md rule, a `focus` beads label, status in the bead's notes, rules as beads memories).
+- [Session handoff: the focus-label pattern](session-handoff.md) (replaces the retired `session-checkpoint` skill and `NEXT.md` files): close one agent session and start the next without handoff files (a static AGENTS.md rule, a `focus` beads label, status in the bead's notes, rules as beads memories).
 
 ## Work in development
 

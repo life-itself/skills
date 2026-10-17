@@ -23,6 +23,13 @@ Durable state lives where it already belongs: docs, beads, memories. The handoff
 4. **Working rules as beads memories** (`bd remember "..."`): how the human wants work done, e.g. "every open question carries a recommendation". `bd prime` surfaces them to every new session and every agent, not just one tool's memory.
 5. **Kickoff:** a new session needs no handoff prompt, because `AGENTS.md` sends it to the focus beads. If one is wanted: "Read AGENTS.md, run `bd list --label=focus`, and act as coordinator."
 
+## When beads are not enough
+
+Rarely, a bead cannot hold what the next session needs. Prefer, in order:
+1. **The work plan itself.** The bead's notes point into a plan or design doc that already exists for the work; no extra handoff file.
+2. **A beads memory** (`bd remember`) for a rule or fact that outlives the task.
+3. **A special handoff document**, only in a specific case: reference it from the focus bead's notes, and delete it once the next session has absorbed it. Nothing handoff-shaped stays in the git repo.
+
 ## Before closing a session
 
 - Pull and push both code and beads (`git pull --rebase`, `git push`; check the Dolt sync).
