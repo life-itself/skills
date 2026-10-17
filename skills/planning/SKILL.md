@@ -1,6 +1,6 @@
 ---
 name: planning
-description: AI-guided planning for this repo at three altitudes — week, day, and "what do I do right now". Live-reads the portfolio (projects/, initiatives/, week/, day/, bd inbox, NEXT.md) and the Google Calendar, then runs a low-friction interactive session and writes the plan. Use when planning the week, planning a day, or deciding what to work on next.
+description: AI-guided planning for this repo at three altitudes — week, day, and "what do I do right now". Live-reads the portfolio (projects/, initiatives/, week/, day/, bd inbox, `focus` beads) and the Google Calendar, then runs a low-friction interactive session and writes the plan. Use when planning the week, planning a day, or deciding what to work on next.
 license: Proprietary
 metadata:
   author: rgrp
@@ -40,7 +40,7 @@ Sources, in priority order:
    `url`. Detailed tasks usually live **elsewhere** (the project's own repo /
    GitHub) — this repo holds enough to know where I am in the big picture.
 4. `initiatives/*.md` — the enduring efforts projects hang under.
-5. `bd list` (bd/beads inbox — quick-capture open loops, replaced `INBOX.md` 2026-08-21; see [docs/plans/2026-08-21-inbox-to-beads-design.md](docs/plans/2026-08-21-inbox-to-beads-design.md)). Before using a selected linked local workspace as planning evidence, `git fetch --prune` it and fast-forward it with `git pull --ff-only` only when it is clean and merely behind its tracked remote; report dirty/diverged checkouts as stale instead of pulling them. Then inspect local Beads first when it has `.beads`; use `NEXT.md` only as non-duplicative orientation or a checkpoint. When the workspace has no `.beads`, `NEXT.md` remains the near-term commitment source.
+5. `bd list` (bd/beads inbox — quick-capture open loops, replaced `INBOX.md` 2026-08-21; see [docs/plans/2026-08-21-inbox-to-beads-design.md](docs/plans/2026-08-21-inbox-to-beads-design.md)). Before using a selected linked local workspace as planning evidence, `git fetch --prune` it and fast-forward it with `git pull --ff-only` only when it is clean and merely behind its tracked remote; report dirty/diverged checkouts as stale instead of pulling them. Then inspect local Beads first when it has `.beads`; read its `focus`-labelled beads (`bd list --label=focus`) first. `NEXT.md` is legacy: use it only when the workspace has no `.beads` yet, and flag that workspace for migration to Beads.
 
 **Calendar.** Pull what's already scheduled via the Google Calendar MCP:
 `mcp__claude_ai_Google_Calendar__list_events` for the target window
@@ -72,7 +72,7 @@ user to name the next concrete action.
 Goal: a small, calendar-aware week plan at **project/initiative level**. Not a
 portfolio review — extract the few themes that matter this week.
 
-Read: context core, focus on recent `week/*.md`, a scoped `plan-for-delegation` ready query when a recent sweep exists, local Beads for selected linked workspaces when present, then `NEXT.md` where it remains relevant, and a sample of the `projects/` that look live. Pull the week's calendar.
+Read: context core, focus on recent `week/*.md`, a scoped `plan-for-delegation` ready query when a recent sweep exists, local Beads for selected linked workspaces when present, then any legacy `NEXT.md` only where a workspace has no Beads yet, and a sample of the `projects/` that look live. Pull the week's calendar.
 
 Interactive flow — **one question at a time**:
 
@@ -109,7 +109,7 @@ Output structure (match existing week notes):
 ```
 
 Prioritization: strategic/creative ahead of admin; keep Focus small (≤5 goals);
-prefer projects that are active in the `bd` inbox/`NEXT.md`, strategically central,
+prefer projects that are active in the `bd` inbox (focus-labelled beads), strategically central,
 close to shipping, or unblocked by a small decision. Use outcome verbs: clarify,
 ship, decide, write, set up, unblock.
 
@@ -129,7 +129,7 @@ Interactive flow — **one question at a time**:
    available + energy (Low / Med / High) if not obvious.
 2. **Pick the focus** from this week's Focus section (don't re-plan the week).
 3. **Drill to next actions.** For the chosen project(s), suggest concrete next
-   actions from local Beads when present, otherwise repo `## Tasks` / `NEXT.md` / the planning `bd` inbox. Where the canonical
+   actions from local Beads when present, otherwise repo `## Tasks` / legacy `NEXT.md` / the planning `bd` inbox. Where the canonical
    tasks are external, surface `github`/`tracker`/`url` and ask the user to name
    the next action.
 4. **Commit.** 3-5 actions max, sized to today's free blocks. Mark one ⭐ "if I

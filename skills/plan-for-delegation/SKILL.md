@@ -40,7 +40,7 @@ exists to catch on an ongoing basis, cheaply.
   (AI finishes it unattended; AI drafts with Rufus steering live; or gated
   on Rufus's review/decision/hands/relationship). Blocking is a `bd dep` edge —
   `bd blocked` shows what's gated and by what.
-- For each selected linked workspace that exists locally, refresh it before trusting its task state: run `git -C <workspace> fetch --prune`, inspect branch status, and run `git -C <workspace> pull --ff-only` only when the checkout is clean and simply behind its tracked remote. Do not pull a dirty or diverged checkout; report it as stale and inspect the remote tracker/source instead. Then check for `.beads`. When present, inspect its local Beads (`bd -C <workspace> list` and, when useful, `bd -C <workspace> blocked`) as that repo's primary task state. Read `NEXT.md` only for non-duplicative orientation or a checkpoint. When `.beads` is absent, `NEXT.md`, the linked tracker, or the project body remain the source to inspect.
+- For each selected linked workspace that exists locally, refresh it before trusting its task state: run `git -C <workspace> fetch --prune`, inspect branch status, and run `git -C <workspace> pull --ff-only` only when the checkout is clean and simply behind its tracked remote. Do not pull a dirty or diverged checkout; report it as stale and inspect the remote tracker/source instead. Then check for `.beads`. When present, inspect its local Beads (`bd -C <workspace> list` and, when useful, `bd -C <workspace> blocked`) as that repo's primary task state. Check its `focus`-labelled beads first. When `.beads` is absent, the linked tracker or the project body is the source to inspect; a legacy `NEXT.md` is supporting context only and the workspace should be flagged for migration to Beads.
 
 **Step 2 — candidate pool.** `status: next|in-progress|backlog|someday` from
 the index, excluding `paused` items whose `tickler` is in the future
@@ -50,7 +50,7 @@ labeled `next` yet.
 
 **Step 3 — gather evidence, then propose reconciliation.** For each candidate:
 
-- **Has open bd entries already** — trust them by default. Spot-check (open the actual source — local Beads when the linked repo has `.beads`, then its `NEXT.md`/GitHub issues as appropriate, or the project file's own body) any entry that is: older than
+- **Has open bd entries already** — trust them by default. Spot-check (open the actual source — local Beads when the linked repo has `.beads`, then GitHub issues (or a legacy `NEXT.md`, flagged for migration) as appropriate, or the project file's own body) any entry that is: older than
   ~7 days since its last update, carries no `updated`/recency signal at
   all, or is about to be surfaced as a top-ranked item in the report below
   (the cases that matter most are exactly the ones worth a real check,
@@ -162,7 +162,7 @@ The design principle: **produce first, ask second.** Never start from a blank pa
 - Relevant files in the current repo (auto-detected from the description)
 - Optional source-planning pointers carried from an earlier planning session
 
-When invoked globally from a project workspace, treat the current repo as the destination context. A planning portfolio project, day/week note, `bd` inbox, or planning `NEXT.md` is optional source context, not a prerequisite; do not assume those planning-only sources exist in an unrelated destination repo.
+When invoked globally from a project workspace, treat the current repo as the destination context. A planning portfolio project, day/week note, or `bd` inbox is optional source context, not a prerequisite; do not assume those planning-only sources exist in an unrelated destination repo.
 
 ## Flow
 
@@ -211,7 +211,7 @@ This planning repo's job stays a thin pointer when the stub lives elsewhere: rec
 ### 1. Read context
 
 Before responding, read:
-- The destination repo's local instructions, relevant files, history, and local Beads when `.beads` exists; read `NEXT.md` only as supporting context when present
+- The destination repo's local instructions, relevant files, history, and local Beads when `.beads` exists; `focus`-labelled beads first; read a legacy `NEXT.md` only as supporting context when present
 - The source portfolio project or day/week note when the selected item carries that pointer
 - The planning repo's related `bd` captures only when the session originated there and they are relevant
 
