@@ -18,6 +18,7 @@ See [docs/install.md](docs/install.md). Short version: `npx skills add life-itse
 | [planning](skills/planning/SKILL.md) | Plan the week, the day, or the next hour from the portfolio and calendar. *Repo-bound (planning repo).* |
 | [portfolio](skills/portfolio/SKILL.md) | Add to, update and tidy a project/initiative portfolio. *Repo-bound (planning repo).* |
 | [project-planning](skills/project-planning/SKILL.md) | Plan big or new work properly: interview-style SCQ and issue tree, sign-off, then hand off to a Logical Thinking Process session. |
+| [tree-mindmap](skills/tree-mindmap/SKILL.md) | Draw a question/hypothesis tree as an elegant left-to-right mindmap of the argument (SVG + PNG). *Draft.* |
 
 ## Recipes
 
