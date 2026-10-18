@@ -14,6 +14,7 @@ See [docs/install.md](docs/install.md). Short version: `npx skills add life-itse
 |---|---|
 | [changelog](skills/changelog/SKILL.md) | Write a changelog entry at the end of a session that shipped something reader-facing. Fetches the current convention from [life-itself/changelog](https://github.com/life-itself/changelog). |
 | [changelog-rollup](skills/changelog-rollup/SKILL.md) | Roll the week's project changelog entries into one draft and handle anything flagged for promotion. *Repo-bound (planning repo).* |
+| [designing-look-and-feel](skills/designing-look-and-feel/SKILL.md) | Develop a visual identity in stages on one living brief page: mood board, then side-by-side direction specimens, then marks, then full pages. *Draft.* |
 | [plan-for-delegation](skills/plan-for-delegation/SKILL.md) | Choose what to work on next across a portfolio, or specify selected work for eventual AI delegation. |
 | [planning](skills/planning/SKILL.md) | Plan the week, the day, or the next hour from the portfolio and calendar. *Repo-bound (planning repo).* |
 | [portfolio](skills/portfolio/SKILL.md) | Add to, update and tidy a project/initiative portfolio. *Repo-bound (planning repo).* |
