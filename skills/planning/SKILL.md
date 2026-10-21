@@ -76,9 +76,7 @@ Read: context core, focus on recent `week/*.md`, a scoped `plan-for-delegation` 
 
 Interactive flow — **one question at a time**:
 
-1. **Frame from the calendar.** Show what's already scheduled this week
-   (meetings, travel, childcare, low-capacity days) and the rough free capacity.
-   Note constraints directly ("Tue is mostly meetings").
+1. **Frame from the calendar (briefly).** Use the calendar only for (a) total capacity this week (travel, gatherings, low-capacity days) and (b) the major meetings worth flagging. Skip unconfirmed invites, standups, and meetings that are just part of a project's work (e.g. a launch call belongs under that project). Ask about anything that changes capacity (e.g. a multi-day event: attending?).
 2. **Project selection.** Propose a shortlist of 3-5 likely live areas from the
    repo. Ask which 3-5 to focus on. Allow add / remove / rename.
 3. **Goal selection.** For each chosen area, suggest 1-2 candidate outcomes from
@@ -98,6 +96,10 @@ Output structure (match existing week notes):
 - [ ] **Project/area**: outcome(s)
     - [ ] concrete move
     - [ ] concrete move
+
+## Capacity and major meetings
+
+- one line on capacity; confirmed major meetings only (no unconfirmed invites, no project-internal meetings)
 
 ## Admin / follow-ups
 
