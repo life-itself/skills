@@ -90,7 +90,7 @@ unblocks other work (check `bd blocked`) or ships something visible. Say
 which criterion is doing the work for the top few — don't just present a
 bare ranking.
 
-**Report as a markdown table**, one row per item, grouped by lane:
+**Report in the [reply shape](../../docs/reply-shape.md).** Open with a TL;DR: the 1–3 things to do next and why. Then **You:** at most 3 items that need the user's decision or a session with them, each with a recommendation. Name projects and tasks in plain words, with IDs in brackets. The full table comes after that, or in the sweep's dated file if it is long: one row per item, grouped by lane:
 
 | Lane | Project | bd entry | Why ranked here | Suggested next |
 |---|---|---|---|---|
@@ -99,7 +99,7 @@ bare ranking.
 | Gated on you | [[project-slug]] | pl-yyy | high leverage, blocks two others | decide |
 | Needs definition | [[project-slug]] | — | `status: next`, no bd entry, no source next action | define a next action |
 
-**Offer reconciliation changes, don't act without confirmation:**
+**Offer reconciliation changes, don't act without confirmation.** Recommend one batch ("apply 1 and 3 now") rather than asking about each change:
 1. Run spec mode on chosen Delegatable candidates.
 2. Create the proposed bd entries for gaps found in Step 3.
 3. Correct any bd entries found stale during spot-checking.
@@ -289,6 +289,7 @@ If any item fails, revise the spec before handing off.
 ## Style
 
 - Be direct and opinionated. The user's job is to react, not generate.
+- Every message to the user follows the [reply shape](../../docs/reply-shape.md): TL;DR, at most 3 asks with recommendations, small choices decided and listed, detail last.
 - Keep specs short. Verbosity is not thoroughness.
 - Flag dependencies explicitly — don't bury them.
 - If the rough description is genuinely too vague to produce anything useful, ask one clarifying question only.

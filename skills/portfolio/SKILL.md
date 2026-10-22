@@ -135,7 +135,9 @@ frontmatter silently.
      initiative/project-scale items sitting in `ideas/`.
    - **Stale** — `status: in-progress` but file untouched > 6 months (use git mtime).
    - **Should-archive** — `status: done` / `superseded` still in a live folder.
-2. **Report** grouped by category, with counts and the file list per group.
+2. **Report** in the [reply shape](../../docs/reply-shape.md): a TL;DR with counts per category, then **You:**
+   the groups that need a call, each with a recommended fix. File lists come
+   after that, or in a linked file.
 3. **Fix interactively** — offer per group (or per file). Apply only what the
    user approves. For orphans, propose a likely `parent` from context but confirm.
 4. **Stop** when the user is done — do not force-fix everything in one pass.
@@ -147,6 +149,7 @@ frontmatter silently.
 - Duplicating the schema here instead of pointing to `docs/data-model.md`.
 - Asking broad open questions before offering context-based suggestions.
 - Asking more than one question at a time.
+- Long reports, or asks buried at the bottom; follow the [reply shape](../../docs/reply-shape.md).
 - Writing empty frontmatter fields instead of omitting them.
 - Fetching / inventing external backlog detail instead of surfacing the link.
 - Bulk-editing in garden mode without a report-and-approve step.
