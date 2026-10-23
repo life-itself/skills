@@ -44,7 +44,7 @@ Follow [reply shape](../../docs/reply-shape.md). A full report runs past one scr
 ## Graph rules
 
 - **Nodes are features or milestones**, not tasks ("Join page", "Forms on", "Old-domain switch"). **Edges mean "needed before".**
-- **Legend on every graph**: ● done · ◐ in progress · ○ not started. Beads uses ● for *blocked* and ✓ for closed; state the legend so nobody reads it the Beads way.
+- **Legend on every graph**: ● done · ◉ at review (built, waiting on a person's eyes: review, sign-off, a decision) · ◐ being built · ○ not started. The fill goes up as the work moves along. Keep "review" apart from "in progress": a page waiting on a person is not being built, and lumping them hides where the bottleneck is (Rufus, 2026-10-23). Stick to one-character-wide symbols: emoji such as 👀 break ASCII alignment. Beads uses ● for *blocked* and ✓ for closed; state the legend so nobody reads it the Beads way.
 - **Layers, top to bottom**: foundations → features or pages → ready to go public → final human review → goal. One layer per band, plenty of space, a status note at the right of each line where it helps. Not left to right on one line per stream: that was unreadable.
 - **One graph per track** (e.g. Track 1: the v1 site; Track 2: the system for the team to edit it), so each has room.
 - **Split partly-done nodes.** If only the v1 subset is in, draw "v1 subset ●" and "archives ○", never one "content imported ●".

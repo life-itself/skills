@@ -8,7 +8,7 @@ Now a draft skill: [project-status-report](../skills/project-status-report/SKILL
 
 - **A table against the goal tree.** One row per critical success factor: status (🟢🟡🔴), what is live, the gap, the bead that closes it. Rufus: "the goal tree table is useful".
 - **A dependency graph per track** (nodes and edges, as in a mathematical graph). Nodes are features or milestones, not tasks; edges mean "needed before". One diagram per track, so each has room.
-- **A legend on every diagram.** ● done, ◐ in progress, ○ not started. Solid for done reads best.
+- **A legend on every diagram.** ● done, ◉ at review (waiting on a person), ◐ being built, ○ not started. Solid for done reads best. Rufus (2026-10-23): "in progress" was wrong for pages that were only waiting on review; review needs its own mark, like a pair of eyes. ◉ looks like an eye and stays one character wide.
 - **Lay the graph out in layers, top to bottom** (foundations → pages → ready to go public → final review → goal), with plenty of space. A dense left-to-right graph squeezed onto one line per stream was unreadable.
 
 - **Progressive detail.** First pass: one simple graph per track with layers as single nodes ("Pages: 4 of 9 signed off"). Then an expanded version, or one graph per layer, when the reader wants to go deeper. Rufus on the layered Track 1 graph: "way better".
