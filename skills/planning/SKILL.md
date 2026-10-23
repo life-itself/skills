@@ -137,8 +137,13 @@ Interactive flow — **one question at a time**:
    actions from local Beads when present, otherwise repo `## Tasks` / legacy `NEXT.md` / the planning `bd` inbox. Where the canonical
    tasks are external, surface `github`/`tracker`/`url` and ask the user to name
    the next action.
-4. **Commit.** 3-5 actions max, sized to today's free blocks. Mark one ⭐ "if I
-   only did one thing today".
+4. **Commit.** Start with outcomes, not activities. Agree **"By the end of
+   today"**: one ⭐ outcome plus at most two secondaries, each worded as a
+   done-state ("the site is launch-ready", not "work on the site") with a
+   checkable done-test where one exists. Say what is already done today, and log
+   anything for tomorrow or Monday as beads rather than leaving it in the note.
+   Then 3-5 actions max, sized to today's free blocks, as the means to those
+   outcomes.
 5. **Draft** `day/YYYY-MM-DD.md` as a checklist, ⭐ first, matching existing day
    notes (use `[[project-slug]]` links and `⌛`/`✅` markers as in prior days).
 
