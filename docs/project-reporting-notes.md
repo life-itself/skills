@@ -9,6 +9,9 @@ Working notes for a future skill that reports project status from Beads plus an 
 - **A legend on every diagram.** ● done, ◐ in progress, ○ not started. Solid for done reads best.
 - **Lay the graph out in layers, top to bottom** (foundations → pages → ready to go public → final review → goal), with plenty of space. A dense left-to-right graph squeezed onto one line per stream was unreadable.
 
+- **Progressive detail.** First pass: one simple graph per track with layers as single nodes ("Pages: 4 of 9 signed off"). Then an expanded version, or one graph per layer, when the reader wants to go deeper. Rufus on the layered Track 1 graph: "way better".
+- **ASCII over SVG or Mermaid** for status in chat: very dense, renders anywhere (terminal, chat, Markdown), costs only the characters, needs no render step, and is easy to edit next time. Use SVG or Mermaid only for a published page.
+
 ## What does not work
 
 - **Progress bars per "area".** The areas were vague (what is "guard"? "landing"?), and bars give every area equal weight when they are not equal (link previews ≠ all the pages).
