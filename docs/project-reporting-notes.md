@@ -14,7 +14,11 @@ Now a draft skill: [project-status-report](../skills/project-status-report/SKILL
 - **Progressive detail.** First pass: one simple graph per track with layers as single nodes ("Pages: 4 of 9 signed off"). Then an expanded version, or one graph per layer, when the reader wants to go deeper. Rufus on the layered Track 1 graph: "way better".
 - **ASCII over SVG or Mermaid** for status in chat: very dense, renders anywhere (terminal, chat, Markdown), costs only the characters, needs no render step, and is easy to edit next time. Use SVG or Mermaid only for a published page.
 
+- **Two levels of done** (Rufus, 2026-10-23): "good enough to go" vs "gone over with a fine-tooth comb". Signed off for v1 is ●; polish is a separate, later, site-wide pass, not a per-page gate.
+
 ## What does not work
+
+- **Compressing the graph to keep a reply short.** The brevity goes in the prose; the graph keeps the layout from the last report, marking what changed.
 
 - **Progress bars per "area".** The areas were vague (what is "guard"? "landing"?), and bars give every area equal weight when they are not equal (link previews ≠ all the pages).
 - **Marking a node done when only part is done.** "Content imported ✓" hid that only the v1 subset was in and the archives (Substack, old episodes, past events) were not. Split the node: "v1 subset ●", "archives ○".
