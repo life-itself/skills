@@ -19,6 +19,7 @@ See [docs/install.md](docs/install.md). Short version: `npx skills add life-itse
 | [planning](skills/planning/SKILL.md) | Plan the week, the day, or the next hour from the portfolio and calendar. *Repo-bound (planning repo).* |
 | [portfolio](skills/portfolio/SKILL.md) | Add to, update and tidy a project/initiative portfolio. *Repo-bound (planning repo).* |
 | [project-planning](skills/project-planning/SKILL.md) | Plan big or new work properly: interview-style SCQ and issue tree, sign-off, then hand off to a Logical Thinking Process session. |
+| [project-status-report](skills/project-status-report/SKILL.md) | Report where a Beads + LTP project stands: TL;DR, a goal-tree table, one ASCII dependency graph per track, asks and decisions. *Draft.* |
 | [research-note](skills/research-note/SKILL.md) | Write a note about a person or field: pick the depth first (quick stub by default), or go deeper with a question tree, tiered evidence, a fact-check subagent and a credited portrait. *Draft.* |
 | [tree-mindmap](skills/tree-mindmap/SKILL.md) | Draw a question/hypothesis tree as an elegant left-to-right mindmap of the argument (SVG + PNG). *Draft.* |
 

@@ -2,6 +2,8 @@
 
 Working notes for a future skill that reports project status from Beads plus an LTP plan (goal tree, transition). Collected from Rufus's feedback while reporting on the Seeds of Renaissance website (sor-website, planning session, 2026-10-23). Add to these as more feedback comes in.
 
+Now a draft skill: [project-status-report](../skills/project-status-report/SKILL.md), with this example in [references/](../skills/project-status-report/references/sor-website-2026-10-23.md). Keep collecting feedback here, then fold it into the skill.
+
 ## What works
 
 - **A table against the goal tree.** One row per critical success factor: status (🟢🟡🔴), what is live, the gap, the bead that closes it. Rufus: "the goal tree table is useful".
@@ -27,6 +29,8 @@ Working notes for a future skill that reports project status from Beads plus an 
 5. **Decided:** one-liners.
 
 ## Example: Track 1 graph (sor-website, 2026-10-23)
+
+As shown to Rufus. A later check against the beads and repo found several wrong marks (e.g. "● Analytics" when only the signals were chosen); the corrected version is in the [skill's worked example](../skills/project-status-report/references/sor-website-2026-10-23.md).
 
 ```
  LAYER 1  FOUNDATIONS
