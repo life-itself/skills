@@ -4,9 +4,7 @@ Use this for personal repositories where Beads should sync across your own machi
 
 ## Model
 
-Each clone has a local embedded Dolt database. The repository tracks Beads metadata/configuration, the JSONL export (`.beads/issues.jsonl`) and Dolt’s versioned database data; machine-local database/runtime files stay ignored. Cross-machine synchronization happens through the Beads Dolt remote, not by importing the JSONL export.
-
-The JSONL export is enabled because it is useful for inspection, migration, and tools such as viewers. It is not the backup or sync mechanism, but **it must be committed**: `.beads/issues.jsonl` is a tracked file. It may be empty (0 bytes) until the first issue exists. `bd init` commits its own files before the first export runs, so the file shows as untracked afterwards; `git add` it and commit.
+Each clone has a local embedded Dolt database. The repository tracks Beads metadata/configuration; machine-local database/runtime files stay ignored. Dolt is the source of truth, and cross-machine synchronization happens through the Beads Dolt remote. There is no JSONL export: new repos set `export.auto false` and gitignore `.beads/issues.jsonl`. The safety net is `bd backup` (Dolt-native, off-machine), not JSONL. Run `bd export` by hand only for one-off migration or interchange.
 
 ## One-time setup in an existing repository
 
@@ -18,10 +16,10 @@ bd init --non-interactive \
   --role maintainer \
   --skip-agents
 
-bd config set export.auto true
+bd config set export.auto false
+echo ".beads/issues.jsonl" >> .beads/.gitignore
 bd dolt remote list
 bd context
-git status --short .beads   # .beads/issues.jsonl untracked? git add and commit it
 ```
 
 `bd init` normally detects the GitHub `origin` and configures the Dolt remote. Verify it explicitly. The expected remote format is usually:
@@ -37,7 +35,7 @@ bd config set sync.remote git+ssh://git@github.com/OWNER/REPOSITORY.git
 bd dolt remote add origin git+ssh://git@github.com/OWNER/REPOSITORY.git
 ```
 
-Do not use `--stealth` for a repository where the Beads database should be shared with your other machines. Do not use JSONL import/export as the normal sync workflow.
+Do not use `--stealth` for a repository where the Beads database should be shared with your other machines. Do not use JSONL import/export for sync or backup.
 
 ## Recommended hooks
 
@@ -167,11 +165,12 @@ This means the local Dolt commit graph and the remote's were built from two sepa
 **Before choosing a recovery path, check whether it actually matters:**
 
 ```bash
-git fetch origin main -q
-git diff origin/main -- .beads/issues.jsonl
+bd export -o /tmp/local.jsonl          # local issues, for comparison only
+# on a clone of the remote (bd bootstrap in a scratch dir): bd export -o /tmp/remote.jsonl
+diff <(sort /tmp/local.jsonl) <(sort /tmp/remote.jsonl)
 ```
 
-If this is empty, the git-tracked issue content already matches the remote exactly — only the Dolt binary history diverged, not the data. In that case it's safe to discard the local Dolt db and re-clone:
+If the diff is empty, the issue content already matches the remote — only the Dolt binary history diverged, not the data. In that case it's safe to discard the local Dolt db and re-clone:
 
 ```bash
 bd dolt remote add origin git+ssh://git@github.com/OWNER/REPOSITORY.git   # if not already added
@@ -181,7 +180,7 @@ bd status                       # confirm issue count matches expectations
 bd dolt push && bd dolt pull    # confirm sync round-trips cleanly
 ```
 
-If `git diff` shows real differences, do not discard either side blindly — export both (`bd export`) and reconcile the issues by hand, or treat whichever side has the newer/more-trusted work as authoritative and use `bd dolt push --force` from that side instead.
+If the diff shows real differences, do not discard either side blindly — export both (`bd export`) and reconcile the issues by hand, or treat whichever side has the newer/more-trusted work as authoritative and use `bd dolt push --force` from that side instead.
 
 While setting this up, also check for two easy-to-miss gaps that don't error loudly:
 
@@ -190,7 +189,7 @@ git config core.hooksPath        # should print .beads/hooks — set it if empty
 ls -ld .beads                    # should be 0700; chmod 700 .beads if not
 ```
 
-Also add `.beads/.auto-import-issues.jsonl` to `.beads/.gitignore` if not already present — it's bd's runtime staging file for auto-import, not the tracked export (`.beads/issues.jsonl`, no leading dot), and differs per machine.
+Also make sure `.beads/.gitignore` ignores `.beads/.auto-import-issues.jsonl` (bd's per-machine runtime staging file) and `.beads/issues.jsonl` (no export in new repos).
 
 ## Copy/paste setup prompt for another repository
 
@@ -204,8 +203,7 @@ Requirements:
 - Do not use stealth mode: `.beads` must be committed and shared.
 - Preserve any existing AGENTS.md by passing `--skip-agents` to `bd init`.
 - Configure the Beads Dolt sync remote to the repository’s GitHub `origin` using its SSH URL.
-- Enable `export.auto true`; explain that JSONL is for interchange/viewers and Dolt remotes are the actual sync mechanism.
-- Commit `.beads/issues.jsonl` (tracked, may be empty at first; `bd init` commits before the export runs, so add it afterwards).
+- Set `export.auto false` and gitignore `.beads/issues.jsonl`: no JSONL export. Dolt is the source of truth; `bd backup` is the safety net.
 - Keep machine-local Dolt databases, sockets, locks, sync state, and logs ignored.
 - Ensure Git uses the repo-local `.beads/hooks` via `core.hooksPath`.
 - The managed hooks do not sync Dolt. Append the guarded `bd dolt push` from "Recommended hooks" to `.beads/hooks/pre-push`, after the END marker, so `git push` also pushes Beads and never fails because of it. Verify by comparing `git ls-remote origin refs/dolt/data` before and after a push. Add failure-tolerant `bd dolt pull` wrappers for post-merge/post-checkout if those hooks don't already pull.

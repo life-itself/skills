@@ -75,9 +75,9 @@ Ask whether to set up Beads for issue tracking (**default: yes**).
 
 If yes, and `.beads` doesn't already exist: follow [[beads-sync-playbook]] in this repo — specifically its "One-time setup in an existing repository" section and the copy/paste setup prompt at the bottom. Key points not to skip:
 - `bd init --non-interactive --prefix PROJECT_PREFIX --role maintainer --skip-agents` (prefix = short stable slug from the repo name; `--skip-agents` so it doesn't clobber the `AGENTS.md` from step 3)
-- `bd config set export.auto true`
+- `bd config set export.auto false` (no JSONL export; Dolt is the source of truth)
 - verify the Dolt remote points at this repo's GitHub origin
-- commit `.beads/issues.jsonl` (the JSONL export; it is tracked and may be empty at first — `bd init` commits before it is written)
+- add `.beads/issues.jsonl` to `.beads/.gitignore`
 - install the recommended sync hooks (`core.hooksPath .beads/hooks`)
 - append the guarded `bd dolt push` to `.beads/hooks/pre-push` (see the playbook's "Recommended hooks"). The managed hook does not push Dolt, and from then on `git push` pushes Beads too
 
