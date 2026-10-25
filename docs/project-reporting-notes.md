@@ -2,7 +2,7 @@
 
 Working notes for a future skill that reports project status from Beads plus an LTP plan (goal tree, transition). Collected from Rufus's feedback while reporting on the Seeds of Renaissance website (sor-website, planning session, 2026-10-23). Add to these as more feedback comes in.
 
-Now a draft skill: [project-status-report](../skills/project-status-report/SKILL.md), with this example in [references/](../skills/project-status-report/references/sor-website-2026-10-23.md). Keep collecting feedback here, then fold it into the skill.
+Evolution of the graph, version by version: [project-reporting/evolution.md](project-reporting/evolution.md). Now a draft skill: [project-status-report](../skills/project-status-report/SKILL.md), with this example in [references/](../skills/project-status-report/references/sor-website-2026-10-23.md). Keep collecting feedback here, then fold it into the skill.
 
 ## What works
 
