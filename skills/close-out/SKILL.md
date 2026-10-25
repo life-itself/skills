@@ -114,4 +114,10 @@ Follow [docs/reply-shape.md](../../docs/reply-shape.md), about 150 words:
 
 If anything is not done (failing check, branch waiting on the coordinator, open question), the first line says so instead, e.g. "Nearly closed out: branch pushed, waiting on coordinator merge."
 
-Then, if you can rename the session, put ✅ at the front of its title.
+Then mark the session done by putting ✅ at the front of its title (only on a full close-out, not "Nearly closed out"). In the Claude desktop app the rename tool is deferred, so load it first:
+
+1. `ToolSearch` with `select:mcp__ccd_session_mgmt__get_session,mcp__ccd_session_mgmt__set_session_title`.
+2. `get_session` with `session_id: "self"` to read the current title.
+3. `set_session_title` with `session_id: "self"` and `title: "✅ <current title>"`; skip if it already starts with ✅. The app may ask the user to approve if they set the title themselves.
+
+A subagent cannot rename its own session; in Codex or the CLI with no such tool, skip this and say so in one line.
