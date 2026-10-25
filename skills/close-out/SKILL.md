@@ -1,6 +1,6 @@
 ---
 name: close-out
-description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up", "is it committed?" or otherwise signals that a session's work may be finished. First checks whether the session goal is actually met and says what is left if not; then sweeps the session for loose ends, brings Beads, docs and the changelog up to date, verifies, commits and pushes, then reports a short "closed out" TL;DR. Not for handing work to a new session (see session-handoff.md) or for a project status report.
+description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up" or "is it committed?". Checks the session goal is met, sweeps loose ends, brings Beads, docs and changelog up to date, pushes, and reports a short "closed out" TL;DR. Not for handoff to a new session.
 license: Proprietary
 metadata:
   author: rgrp
@@ -10,97 +10,75 @@ metadata:
 
 # Close out a finished session
 
-Make "done" true and visible: every thread of the session is finished, logged or deliberately dropped; Beads, docs, changelog and git match what happened; and the user gets one short report they can trust without asking "is it committed?".
+Make "done" true and visible: every thread is finished, logged or deliberately dropped; Beads, docs, changelog and git match what happened; the user gets one short report they can trust.
 
-This is for the end of work. If work will continue in a new session, also follow [session-handoff.md](../../session-handoff.md) (focus label and notes).
+If work will continue in a new session, also follow [session-handoff.md](../../session-handoff.md).
 
 ## Principles
 
-- **Ask little.** The user wants to stop. Default what you can and list it under **Decided**. Ask only where a thread is genuinely ambiguous: at most 3 questions, each with a recommendation.
-- **Evidence, not claims.** Every "done", "pushed", "synced" in the report comes from a command you ran this turn and read the output of.
-- **Fix, don't just report.** A missing bead, stale doc or unpushed commit: do it (within the repo's push rules) and say so.
+- **Cheap and quick.** This runs at the end of a long session, while the user waits. The conversation is already in context: sweep it from memory, not by re-reading files. Aim for 4–6 tool calls: batch commands, send independent calls in parallel, `grep` rather than `Read`, no subagents. Think the sweep through silently; write only the report.
+- **Thorough where it is free.** Skip a step only on a concrete guard (listed per step), never because the session felt small.
+- **Ask little.** Default what you can and list it under **Decided**. Ask only where a thread is genuinely ambiguous: at most 3 questions, each with a recommendation.
+- **Evidence, not claims.** "Done", "pushed", "synced" come from output you read after the last change. "Fix, don't just report": a missing bead or unpushed commit, do it and say so.
 
 ## 0. Are we done?
 
-The user often invokes this unsure ("are we done here?"). Answer that first, from the session's goal, not from whether the last task finished:
+From the session's goal (as revised), not the last task. **Clearly done:** one line, carry on. **Not done:** stop and reply with what is left, one line each with its size, and a recommendation: finish now, or close out with the rest logged. If the user has clearly said they are finished, don't ask; leftovers go through the sweep.
 
-- Restate the goal in one line (what the user asked for at the start, as revised along the way) and check it against what exists: shipped, verified, merged, live.
-- **Clearly done:** say so in one line and carry on to step 1.
-- **Not done, or done only in part:** stop. Reply with what is left, one line each with its size, and a recommendation: finish now (small, and worth it), or close out with the rest logged as beads. E.g. "Not quite: the form posts but the confirmation email isn't wired (about 20 min). I'd finish it now." Continue on their answer: do the work, or run the close-out.
+## 1. State (one call)
 
-Do not ask "are you sure?" when the user has clearly said they are finished; then the remaining items just go through the sweep in step 2.
+In parallel, in one message:
+- `bash ~/.claude/skills/close-out/state.sh [session-start]` from the repo root (Codex: `~/.agents/skills/...`). It pulls code and Beads, then prints git status, unpushed commits, stashes, worktrees, files committed since the start, focus and in-progress beads, beads touched since the start, open beads referenced in commits, and the latest changelog entries. Without a start time it uses today.
+- Desktop app only: `ToolSearch` `select:mcp__ccd_session_mgmt__get_session,mcp__ccd_session_mgmt__set_session_title`, for step 6.
 
-## 1. Context
+Also decide: **child worktree session** (pushes its branch and tells the coordinator; never pushes main) or main? **Push rules:** Rufus's own repos (`~/src/rufuspollock/*`) or AGENTS.md allows it: push; if silent, commit and ask.
 
-```bash
-git pull --rebase && bd dolt pull      # beads may have moved during the session
-git status --short --branch
-git worktree list; git stash list
-git log --oneline @{u}..HEAD           # unpushed commits
-bd list --label=focus
-```
+## 2. Loose-end sweep (from memory)
 
-- **Child or main session?** A worktree session started by a coordinator session pushes its own branch and tells the coordinator; it does not merge or push main.
-- **Push rules.** Rufus's own repos (`~/src/rufuspollock/*`) and repos whose AGENTS.md allows it: push. Otherwise follow that AGENTS.md; if silent, commit and ask.
+Walk the whole conversation: things asked for, started, put off, side ideas, promised steps ("details below"), the user's unanswered questions, side sessions. Bucket each: **Done** (close bead), **Logged** (asked for, or an obvious follow-up: make sure a bead exists), **Dropped** (user moved on: Decided, if substantial), **Owed** (your undelivered promise or answer: deliver now), **Unclear** (half-built, could go either way).
 
-## 2. Loose-end sweep
+If anything is **Unclear**, ask about all of them in one message and stop, e.g. "CSV export is half-built (parser, no UI). Finish, log, or drop? I'd log it: the parser is reusable." Otherwise run straight through.
 
-Go back through the whole conversation, not just the last few turns. List every thread: things asked for, started, put off ("later"), side ideas, promised steps ("details below"), questions of the user's you never answered, side sessions started. Put each in a bucket:
+Side sessions still running or awaiting merge: name each with branch and state; never merge another session's branch without the user's yes.
 
-| Bucket | Meaning | Action |
-|---|---|---|
-| **Done** | Finished and verified | Close its bead |
-| **Logged** | User asked to log it, or an obvious follow-up (known bug, deferred step, "confirm with X") | Make sure a bead exists |
-| **Dropped** | User clearly moved on | Nothing; list under Decided if substantial |
-| **Unclear** | Half-built, or the user went quiet and it could go either way | Ask |
-| **Owed** | A promise or answer you did not deliver | Deliver it now |
+## 3. Record: beads, docs, changelog
 
-If there are **Unclear** items, ask about all of them first, in one message, and stop; the answer may reopen work. E.g. "The CSV export is half-built (parser done, no UI). Finish it, log a bead, or drop it? I'd log it: the parser is reusable." If there are none, run straight through steps 3–8 without stopping.
+Make all edits, then do the bd writes in one chained call.
 
-Side sessions or subagents still running or awaiting merge: name each with its branch and state. Do not merge another session's branch without the user's yes.
+**Beads** (skip if no `.beads/`):
+- Close done: `bd close <id> <id> --reason="..."` (an epic only when all children are closed or moved). Check the "referenced in commits" list.
+- Touched but unfinished: `bd update <id> --append-notes="state; next"`. `--notes` replaces; use it only for the focus bead's status. Never `bd edit`.
+- Log missing: `bd create --title=... --description=... --type=... --priority=... --parent=<epic> --deps=blocked-by:<id>`.
+- Dependencies: for each new or changed bead, what must come first and what does it unblock? `bd dep add <later> <earlier>`. Confirm with `bd show <id>` only for beads you created or re-linked.
+- Focus moved or finished: move the `focus` label, rewrite its notes.
+- User corrected how you work and it will recur: `bd remember "..."` with the reason.
 
-## 3. Beads
+**Docs** (skip if no files changed and no decisions were made in chat):
+- Should have changed: README tables, AGENTS.md links, plans or design docs the work implemented, indexes.
+- Now stale: superseded docs, scratch notes, merged drafts, plans now living in beads. Delete or merge; no "superseded" banners.
+- Renamed or removed things: one `grep -rn "<old>|<old2>"` over the repo; fix what turns up.
+- Decisions that exist only in the chat and will be needed again: into the right doc or bead.
+Only this session's docs; log a bead for unrelated rot.
 
-- **Close** finished beads: `bd close <id> --reason="..."`. Close an epic only when all its children are closed or moved. `bd orphans` lists open beads already referenced in commits, which are often done.
-- **Update** beads touched but not finished: `bd update <id> --append-notes="..."` (where it stands, what is next). `--notes` replaces the notes; use it only to rewrite the focus bead's status. Never `bd edit`.
-- **Log** each Logged item with no bead: `bd create --title=... --description=... --type=... --priority=... --parent=<epic> --deps=blocked-by:<id>`.
-- **Dependencies.** For each new or changed bead, ask what must happen first and what it unblocks; add missing links with `bd dep add <later> <earlier>`. Confirm with `bd show <id>` (parent and blockers right) and `bd blocked`.
-- **Focus.** If the focus bead is finished or the focus moved, move the `focus` label and update its notes.
-- **Rules learned.** If the user corrected how you work and it will recur: `bd remember "..."` with the reason.
+**Changelog** (skip if no `changelog/` folder or changelog rule in AGENTS.md):
+- Warranted? Repo AGENTS.md rule, else the `changelog` skill's test; when unsure, skip.
+- Entry for this feature already exists (see the state output)? **Update it**, don't add a second. Scope changed: make it describe what shipped, with a live link. Feature dropped: delete it.
 
-## 4. Docs
+## 4. Verify
 
-Only docs related to this session's work; log a bead for unrelated rot.
+Skip if tests, build or a live check already ran after the last change and passed; cite that. Otherwise run the gates that exist for what changed and read the output (skipped tests are not a pass). Failing: fix it, or report it as not done.
 
-- **Should have changed:** README tables, AGENTS.md links, plans or design docs the work implemented or changed, indexes. Update them.
-- **Now stale:** docs superseded by later decisions, scratch notes, drafts merged elsewhere, plans whose content now lives in beads or the final doc. Delete or merge; git keeps history. No "superseded" banners.
-- **Dangling references:** for each thing renamed or removed, `grep -r "<old name>"` and fix what turns up.
-- **Only in the chat:** decisions or content that will be needed again. Move them to the right doc or bead.
+## 5. Commit and push (one call)
 
-## 5. Changelog
+`git add -A && git commit -m "..." && git pull --rebase && git push`, then `git status -sb`. Check `git status` first for untracked files that should not go in. Notes:
+- Beads repos: the pre-push hook pushes Dolt; on failure `bd dolt push`. Another session's Dolt lock can make it hang to the timeout: wait, don't retry in a loop.
+- Divergence you can't resolve safely: stop and report. Never force-push.
+- Child worktree: push the branch, message the coordinator that it is ready to merge (don't make the user relay); "pushed" means the branch, not main.
+- Remove this session's stashes or worktrees only if clean; otherwise ask.
 
-Only where the repo has a `changelog/` folder or a changelog rule in AGENTS.md.
+## 6. Report and mark done
 
-1. **Should there be one?** Apply the repo's AGENTS.md rule, else the `changelog` skill's test. When unsure, skip.
-2. **Is there one already?** If an entry for this feature exists (this session or recent), **update it**; do not add a second.
-3. **Does it still match?** If scope changed during the session, edit the entry to describe what actually shipped, with a live link. If the feature was dropped, delete the entry.
-
-## 6. Verify
-
-Run the gates that exist for what changed (tests, build, lint) and read the output; skipped tests are not a pass. For sites, check the live or preview page after the deploy. If a check fails, fix it or report it as not done.
-
-## 7. Git and sync
-
-1. Nothing stray: untracked files that belong in the repo are added; this session's stashes and worktrees are cleared (never remove a worktree with uncommitted changes; ask).
-2. Commit with a message that says what changed.
-3. `git pull --rebase`, then `git push`. In Beads repos the pre-push hook also pushes Dolt; on failure run `bd dolt push`. A Dolt lock held by another session can make the hook hang until its timeout; wait, then check.
-4. Divergence or conflict you cannot resolve safely: stop and report. Never force-push.
-5. Child worktree session: push the branch, then message the coordinator session that it is ready to merge yourself; do not ask the user to relay. "Pushed" then means the branch, not main; say so.
-6. Confirm `git status` is up to date with origin.
-
-## 8. Report and mark done
-
-Follow [docs/reply-shape.md](../../docs/reply-shape.md), about 150 words:
+About 150 words, per [docs/reply-shape.md](../../docs/reply-shape.md):
 
 ```
 ✅ Closed out. <one-line TL;DR of what this session delivered>
@@ -108,16 +86,10 @@ Follow [docs/reply-shape.md](../../docs/reply-shape.md), about 150 words:
 **You:** <only big asks still open; omit if none>
 **Done:** <shipped items, with live links>
 **Logged for later:** <plain name (bead-id), one per line>
-**Decided:** <defaults you applied, including anything dropped>
-**State:** committed and pushed (<branch>), Beads synced, <checks run>.
+**Decided:** <defaults applied, incl. anything dropped>
+**State:** committed and pushed (<branch>), Beads synced, <checks and evidence>.
 ```
 
-If anything is not done (failing check, branch waiting on the coordinator, open question), the first line says so instead, e.g. "Nearly closed out: branch pushed, waiting on coordinator merge."
+Anything not done (failing check, branch awaiting merge, open question): the first line says so instead, e.g. "Nearly closed out: branch pushed, waiting on coordinator merge."
 
-Then mark the session done by putting ✅ at the front of its title (only on a full close-out, not "Nearly closed out"). In the Claude desktop app the rename tool is deferred, so load it first:
-
-1. `ToolSearch` with `select:mcp__ccd_session_mgmt__get_session,mcp__ccd_session_mgmt__set_session_title`.
-2. `get_session` with `session_id: "self"` to read the current title.
-3. `set_session_title` with `session_id: "self"` and `title: "✅ <current title>"`; skip if it already starts with ✅. The app may ask the user to approve if they set the title themselves.
-
-A subagent cannot rename its own session; in Codex or the CLI with no such tool, skip this and say so in one line.
+On a full close-out, in the desktop app: `get_session("self")`, then `set_session_title("self", "✅ <title>")` unless it already starts with ✅ (the app may ask the user to approve). No tool (Codex, CLI, subagent): skip and say so in one line.
