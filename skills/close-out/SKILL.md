@@ -1,6 +1,6 @@
 ---
 name: close-out
-description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up" or "is it committed?". Checks the session goal is met, sweeps loose ends, brings Beads, docs and changelog up to date, pushes, and reports a short "closed out" TL;DR. Not for handoff to a new session.
+description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up" or "is it committed?". Checks the session goal is met, sweeps loose ends, brings Beads, docs and changelog up to date, pushes, cleans up merged worktrees, and reports a short "closed out" TL;DR. Not for handoff to a new session.
 license: Proprietary
 metadata:
   author: rgrp
@@ -28,14 +28,14 @@ From the session's goal (as revised), not the last task. **Clearly done:** one l
 ## 1. State (one call)
 
 In parallel, in one message:
-- `bash ~/.claude/skills/close-out/state.sh [session-start]` from the repo root (Codex: `~/.agents/skills/...`). It pulls code and Beads, then prints git status, unpushed commits, stashes, worktrees, files committed since the start, focus and in-progress beads, beads touched since the start, open beads referenced in commits, and the latest changelog entries. Without a start time it uses today.
-- Desktop app only: `ToolSearch` `select:mcp__ccd_session_mgmt__get_session,mcp__ccd_session_mgmt__set_session_title`, for step 6.
+- `bash ~/.claude/skills/close-out/state.sh` from the repo or worktree root (Codex: `~/.agents/skills/...`). It pulls code and Beads, then prints git status, unpushed commits, stashes, files committed this session, other worktrees (merged? dirty?), focus, in-progress and touched beads, open beads referenced in commits, the latest changelog entries, and the user's asks this session from the transcript. Session start comes from the transcript (pass an RFC3339 time to override). Lines starting `!!` need action; "unpushed" being empty is not proof of pushed unless there is no `!! no upstream`. Committed files may include other sessions' work in the same repo.
+- Desktop app only: `ToolSearch` `select:mcp__ccd_session_mgmt__get_session,mcp__ccd_session_mgmt__set_session_title,mcp__ccd_session_mgmt__archive_session`, for steps 6–7.
 
-Also decide: **child worktree session** (pushes its branch and tells the coordinator; never pushes main) or main? **Push rules:** Rufus's own repos (`~/src/rufuspollock/*`) or AGENTS.md allows it: push; if silent, commit and ask.
+`!! LINKED WORKTREE` means this session works on a branch: push the branch (and tell the coordinator, if a coordinator session started it); never push main. **Push rules:** Rufus's own repos (`~/src/rufuspollock/*`) or AGENTS.md allows it: push; if silent, commit and ask.
 
 ## 2. Loose-end sweep (from memory)
 
-Walk the whole conversation: things asked for, started, put off, side ideas, promised steps ("details below"), the user's unanswered questions, side sessions. Bucket each: **Done** (close bead), **Logged** (asked for, or an obvious follow-up: make sure a bead exists), **Dropped** (user moved on: Decided, if substantial), **Owed** (your undelivered promise or answer: deliver now), **Unclear** (half-built, could go either way).
+Walk the whole conversation, plus the state output's "user asks" list (it catches threads lost to context compaction): things asked for, started, put off, side ideas, promised steps ("details below"), the user's unanswered questions, side sessions. Bucket each: **Done** (close bead), **Logged** (asked for, or an obvious follow-up: make sure a bead exists), **Dropped** (user moved on: Decided, if substantial), **Owed** (your undelivered promise or answer: deliver now), **Unclear** (half-built, could go either way).
 
 If anything is **Unclear**, ask about all of them in one message and stop, e.g. "CSV export is half-built (parser, no UI). Finish, log, or drop? I'd log it: the parser is reusable." Otherwise run straight through.
 
@@ -53,7 +53,7 @@ Make all edits, then do the bd writes in one chained call.
 - Focus moved or finished: move the `focus` label, rewrite its notes.
 - User corrected how you work and it will recur: `bd remember "..."` with the reason.
 
-**Docs** (skip if no files changed and no decisions were made in chat):
+**Docs** (skip if no files changed and no decisions, conventions or corrections were made in chat):
 - Should have changed: README tables, AGENTS.md links, plans or design docs the work implemented, indexes.
 - Now stale: superseded docs, scratch notes, merged drafts, plans now living in beads. Delete or merge; no "superseded" banners.
 - Renamed or removed things: one `grep -rn "<old>|<old2>"` over the repo; fix what turns up.
@@ -66,17 +66,25 @@ Only this session's docs; log a bead for unrelated rot.
 
 ## 4. Verify
 
-Skip if tests, build or a live check already ran after the last change and passed; cite that. Otherwise run the gates that exist for what changed and read the output (skipped tests are not a pass). Failing: fix it, or report it as not done.
+Skip only if you can name the command and it ran and passed after your last file edit in this session; cite it. After compaction you can't be sure, so run it. Otherwise run the gates that exist for what changed and read the output (skipped tests are not a pass). Failing: fix it, or report it as not done.
 
 ## 5. Commit and push (one call)
 
-`git add -A && git commit -m "..." && git pull --rebase && git push`, then `git status -sb`. Check `git status` first for untracked files that should not go in. Notes:
+First look at the `??` lines in the state output; anything that should not go in goes in `.gitignore`, or `git add` explicit paths instead. Then `git add -A && git commit -m "..." && git pull --rebase && git push && git status -sb`. Notes:
 - Beads repos: the pre-push hook pushes Dolt; on failure `bd dolt push`. Another session's Dolt lock can make it hang to the timeout: wait, don't retry in a loop.
 - Divergence you can't resolve safely: stop and report. Never force-push.
 - Child worktree: push the branch, message the coordinator that it is ready to merge (don't make the user relay); "pushed" means the branch, not main.
-- Remove this session's stashes or worktrees only if clean; otherwise ask.
+- This session's stashes: drop only if their content is committed; otherwise ask.
 
-## 6. Report and mark done
+## 6. Worktrees
+
+Skip if the state output lists no other worktrees and no `!! LINKED WORKTREE`. A worktree can go only if it is **merged** (or its PR is merged: squash merges show "unmerged", so check `gh pr list --head <branch> --state merged`), **dirty:0**, and belongs to this session or a session this one started. Never touch others' worktrees or a running session's.
+
+- **Plain git worktree** this session made (outside `.claude/worktrees/`): `git worktree remove <path> && git branch -d <branch>` (`-d` refuses unmerged branches). List under Decided.
+- **App-made worktree** (`.claude/worktrees/...`) of a finished child session: the app removes it when the session is archived, so don't `git worktree remove` it. Put one ask under **You:** ("Archive 3 finished child sessions? Branches merged, worktrees clean.") and on yes call `mcp__ccd_session_mgmt__archive_session` for each.
+- **This session's own worktree**, branch merged: the cleanup is archiving this session, which ends the conversation. Offer it as the last line of the report ("Archive this session? It removes its worktree.") and on yes call `archive_session("self")` after the ✅ rename.
+
+## 7. Report and mark done
 
 About 150 words, per [docs/reply-shape.md](../../docs/reply-shape.md):
 
