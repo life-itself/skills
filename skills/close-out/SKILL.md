@@ -1,6 +1,6 @@
 ---
 name: close-out
-description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up", "is it committed?" or otherwise signals that a session's work is finished. Sweeps the session for loose ends, brings Beads, docs and the changelog up to date, verifies, commits and pushes, then reports a short "closed out" TL;DR. Not for handing work to a new session (see session-handoff.md) or for a project status report.
+description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up", "is it committed?" or otherwise signals that a session's work may be finished. First checks whether the session goal is actually met and says what is left if not; then sweeps the session for loose ends, brings Beads, docs and the changelog up to date, verifies, commits and pushes, then reports a short "closed out" TL;DR. Not for handing work to a new session (see session-handoff.md) or for a project status report.
 license: Proprietary
 metadata:
   author: rgrp
@@ -19,6 +19,16 @@ This is for the end of work. If work will continue in a new session, also follow
 - **Ask little.** The user wants to stop. Default what you can and list it under **Decided**. Ask only where a thread is genuinely ambiguous: at most 3 questions, each with a recommendation.
 - **Evidence, not claims.** Every "done", "pushed", "synced" in the report comes from a command you ran this turn and read the output of.
 - **Fix, don't just report.** A missing bead, stale doc or unpushed commit: do it (within the repo's push rules) and say so.
+
+## 0. Are we done?
+
+The user often invokes this unsure ("are we done here?"). Answer that first, from the session's goal, not from whether the last task finished:
+
+- Restate the goal in one line (what the user asked for at the start, as revised along the way) and check it against what exists: shipped, verified, merged, live.
+- **Clearly done:** say so in one line and carry on to step 1.
+- **Not done, or done only in part:** stop. Reply with what is left, one line each with its size, and a recommendation: finish now (small, and worth it), or close out with the rest logged as beads. E.g. "Not quite: the form posts but the confirmation email isn't wired (about 20 min). I'd finish it now." Continue on their answer: do the work, or run the close-out.
+
+Do not ask "are you sure?" when the user has clearly said they are finished; then the remaining items just go through the sweep in step 2.
 
 ## 1. Context
 
