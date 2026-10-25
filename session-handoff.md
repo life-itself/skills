@@ -32,10 +32,7 @@ Rarely, a bead cannot hold what the next session needs. Prefer, in order:
 
 ## Before closing a session
 
-- Pull and push both code and beads (`git pull --rebase`, `git push`; check the Dolt sync).
-- Move anything durable out of the conversation: decisions to the project record, settled content to docs, work-in-progress research to a short note in `docs/plans/`.
-- Delete or merge superseded docs rather than marking them "superseded"; git history keeps them.
-- Update the focus bead's notes. Then the conversation can be thrown away.
+Run the [`close-out`](skills/close-out/SKILL.md) skill: it sweeps for loose ends, brings beads, docs and changelog up to date, and pushes. For a handoff, also update the focus bead's notes (step 3 above). Then the conversation can be thrown away.
 
 ## Why not `bd ready`?
 
