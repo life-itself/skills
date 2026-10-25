@@ -26,6 +26,7 @@ See [docs/install.md](docs/install.md). Short version: `npx skills add life-itse
 
 ## Recipes
 
+- [Writing well](docs/writing-well/README.md): examples and lessons towards a future writing skill, starting with a blog post that got weaker through revision.
 - [Session handoff: the focus-label pattern](session-handoff.md) (replaces the retired `session-checkpoint` skill and `NEXT.md` files): close one agent session and start the next without handoff files (a static AGENTS.md rule, a `focus` beads label, status in the bead's notes, rules as beads memories).
 
 ## Work in development
