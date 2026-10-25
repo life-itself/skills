@@ -150,3 +150,32 @@ A nav-only public bar had missed a footer page that Home links to prominently wi
 6. **Write the symbols in the legend every time.** Beads uses ● for blocked and ✓ for closed, so the legend must say what ours mean.
 
 Rufus's asides worth keeping: "these ascii diagrams have *great* info density", and "the goal tree table is useful btw".
+
+## Rufus's comments, verbatim and in order
+
+The sections above quote only some of them. The full list, from the first request to the last, tagged by what they told us. Quotes are lightly trimmed for length, never reworded.
+
+| # | Rufus said | Tells us |
+|---|---|---|
+| 1 | "give me an overview of where we are at in this project. be concise. give me a table against goal tree … I think we now have almost two parallel tracks … You can also give me a visual if it's helpful, like almost a graph-type view of the main things we're trying to do and where we're at at the moment, as long as you don't overdo it." | Wanted: goal-tree table, one track view per goal, one visual, concise |
+| 2 | "one screen: i just want a table against goal tree like parent session did more and maybe an ascii map / graph of main streams and progress" | One screen; the table first |
+| 3 | "i also want a small ascii graph (i.e. mean mathematical graph ie. nodes and edges) of steps (not maybe at detail level but at feature level or so) of what we need to do to get to the goals" | Nodes and edges, at feature level, not task level |
+| 4 | "what do symbols mean in diagram? i think a solid circle is more visible for done ...? … also maybe split into two diagrams separately for the two tracks … also is all content really imported? what about substack etc? … also where is all the forms wiring up? that's a big deal .." | Legend needed; solid = done; one diagram per track; two false or missing nodes (content import, forms) |
+| 5 | "the previous graph with progress bars wasn't super useful imo (more because the areas weren't so useful e.g. what is guard, and landing has much area as pages etc etc …)" | Bars by area: rejected, and why |
+| 6 | "track 1: please expand a bit - the whole point of separately was to give you more space to design with. the current graph is almost unreadable ..." | Use the space; the dense version failed |
+| 7 | "we should start logging to the skills repo about how to produce these reports. the goal tree table is useful btw ..." | Keep the table; start the skill |
+| 8 | "also CI on push: isn't that already working? or what do you mean by that?" | A node was two things (host build vs manual checks); name the real gap |
+| 9 | "this is *way* better. well done." | The layered, top-to-bottom layout is the one that works |
+| 10 | "suspect you maybe want to simplify for the first diagram if you were doing a first pass e.g. cut the detailed list of pages state. and then you have an expanded version (or even a dedicated diagram per layer) … more explaining a 'progressive detail' approach ..." | Progressive detail: simple first, expand on request |
+| 11 | "these ascii diagrams have *great* info density. are they also fast for you to generate and render (faster e.g. than svg or other alternatives like mermaid?)" | ASCII is the right chat medium |
+| 12 | "what about the more comprehensive data import work - does that have beads and what is status and what layer would you put it in?" | Every stream, including after-launch work, needs a place in the graph (a layer or an "after launch" line) |
+| 13 | "what is the tl;dr for me and what actual actions if any are needed from me - i still find this very verbose ..." | The reader's job comes first, in five lines |
+| 14 | "'in progress' is mistaken if it just means review. can we find a color for 'review'. maybe something looking like a pair of eyes ... in progress is for build ..." | Separate "being built" from "waiting on a person's eyes" (◉) |
+| 15 | "why is this now so compressed compared to before ..." | Do not shrink the graph to make a reply shorter |
+| 16 | "join and magazine are good enough to go ... so somehow we need to differentiate: 'good enough to go' (for v1) from 'we've gone over this with a fine-tooth comb'" | Two levels of done |
+| 17 | "i think i want to transform the page by page polishing into the post v1 … and we have one new bead for the pre v1 final pass (which will probably be AI plus human)" | The launch gate is one pass, not a per-page review |
+| 18 | "also is the manifesto page done and how come i don't see that in the list of things to sign off etc?" | The node list was built from the bar, not the real pages |
+| 19 | "isn't papers v1 already merged - i think it is ..." | A mark taken from a bead's notes was stale; check the repo first |
+| 20 | "ok give me layer 1 updated now ..." | He addresses layers by name; keep layer names stable across reports |
+
+Seen together, the comments say: make the reader's next action obvious, show what is true rather than what a bead says, keep the picture stable and let it change only where the project changed, and keep prose short.
