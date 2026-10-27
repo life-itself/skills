@@ -96,7 +96,7 @@ If `.beads` already exists, skip — this is an existing setup, not a fresh one.
 
 Ask whether to add changelog-writing instructions (**default: yes**).
 
-If yes: fetch `https://raw.githubusercontent.com/life-itself/skills/main/skills/changelog/add-to-agents.md` and add its content to this repo's `AGENTS.md`. Don't paste a stale copy from memory — always fetch fresh, since the upstream file can change.
+If yes: fetch `https://raw.githubusercontent.com/life-itself/changelog/main/add-to-agents.md` and add its content to this repo's `AGENTS.md`. Don't paste a stale copy from memory — always fetch fresh, since the upstream file can change.
 
 Commit and push:
 
