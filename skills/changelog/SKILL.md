@@ -8,10 +8,6 @@ metadata:
 
 # Changelog entry
 
-Thin pointer: the convention lives in `life-itself/changelog` and changes there should take effect immediately, so this skill does not copy the spec.
+The convention is maintained in this skill's [CONVENTION.md](CONVENTION.md). Read it when drafting an entry; use `changelog/YYYY-MM-DD-slug.md` in the current repo. Log only new features or significant reader-facing changes. Skip routine polish, small fixes, and internal cleanup.
 
-1. **Decide whether to log at all.** Only new features or significant reader-facing changes (behaviour, fixes to materially broken functionality, public content). Skip polish, tidying and small fixes as standalone entries; planning/research/design counts only if it is itself a significant public deliverable. When unsure, skip.
-2. **Fetch the current spec every time** and follow it: https://raw.githubusercontent.com/life-itself/changelog/main/CONVENTION.md (plain markdown, public, no auth). If the fetch fails, read `~/src/life-itself/changelog/CONVENTION.md` if that clone exists; otherwise say so rather than guessing the format.
-3. **Write the entry** at `changelog/YYYY-MM-DD-slug.md` in the current repo, per the spec.
-
-Rolling entries up weekly and promoting them is a different concern: the `changelog-rollup` skill, reading PUBLISHING.md in the same repo.
+Weekly roll-up and promotion use [PUBLISHING.md](PUBLISHING.md) and the `changelog-rollup` skill.

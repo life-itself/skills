@@ -20,7 +20,7 @@ a plain-text title, one or two reader-facing sentences, a live link where
 available, and consider a screenshot for visual work. Substantial announcements
 can use paragraphs or bullets. Omit internal implementation detail. For the
 first entry or when the format is unclear, fetch and follow
-https://raw.githubusercontent.com/life-itself/changelog/main/CONVENTION.md
+https://raw.githubusercontent.com/life-itself/skills/main/skills/changelog/CONVENTION.md
 
 ## Session handoff
 

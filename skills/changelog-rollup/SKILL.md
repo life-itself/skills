@@ -1,6 +1,6 @@
 ---
 name: changelog-rollup
-description: Roll that week's project changelog entries into changelog/YYYY-MM-DD.md, and flag/handle anything marked for promotion (social, newsletter). Use during the weekly review, on demand — not per session, not automatic. Full spec at https://raw.githubusercontent.com/life-itself/changelog/main/PUBLISHING.md.
+description: Roll that week's project changelog entries into changelog/YYYY-MM-DD.md, and flag/handle anything marked for promotion (social, newsletter). Use during the weekly review, on demand — not per session, not automatic. Full spec at https://raw.githubusercontent.com/life-itself/skills/main/skills/changelog/PUBLISHING.md.
 license: Proprietary
 metadata:
   author: rgrp
@@ -11,7 +11,7 @@ metadata:
 
 # Changelog roll-up
 
-Aggregates per-project changelog entries into a personal weekly draft, and handles the manual-promote step for anything flagged. This is a separate concern from writing an individual project's changelog entry — see [PUBLISHING.md](https://raw.githubusercontent.com/life-itself/changelog/main/PUBLISHING.md) in `life-itself/changelog` (fetch it if the process below is unclear or hasn't run in a while; that file is canonical, this is the working copy).
+Aggregates per-project changelog entries into a personal weekly draft, and handles the manual-promote step for anything flagged. This is a separate concern from writing an individual project's changelog entry — see [PUBLISHING.md](https://raw.githubusercontent.com/life-itself/skills/main/skills/changelog/PUBLISHING.md) in `life-itself/skills` (fetch it if the process below is unclear or hasn't run in a while; that file is canonical, this is the working copy).
 
 Run this **during** the weekly review (alongside or after the `planning` skill's week mode), not as its own separate session unless asked.
 
