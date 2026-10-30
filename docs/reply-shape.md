@@ -2,7 +2,11 @@
 
 How these skills write anything a person has to read: chat replies, play-backs, sweep reports, briefings and docs. The reader should see in a few seconds what they need to do and can skip the rest.
 
-1. **TL;DR.** One or two plain sentences: the answer or the state of things.
+1. **TL;DR.** One short lead sentence with the answer or the state of things (skip it if the bullets say it all), then 2–4 short bullets, one fact each. Not a paragraph. Example:
+   > **TL;DR:** Course gets its own section on the knowledge-base site.
+   > - Chapter sidebar for navigation.
+   > - JavaScript does work on Flowershow (I was wrong earlier), so polls and small games are possible.
+   > - Chapters 0 and 1 drafted, ready for you to read. Nothing published.
 2. **You:** only what needs the reader, at most 3 items. Each one is a decision or an action, marked *big* (hard to reverse, or theirs to judge) or *small*, with a recommendation and one line of reasoning. If nothing needs them, leave this out.
 3. **Decided:** small, reversible choices you made yourself, one line each. Do not ask about these.
 4. **Detail is secondary, or linked.** Tables, evidence and method go in an appendix or a linked file. In a long chat reply they sit between the one-line TL;DR and the closing asks, never after the asks.
