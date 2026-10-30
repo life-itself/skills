@@ -2,7 +2,7 @@
 
 How these skills write anything a person has to read: chat replies, play-backs, sweep reports, briefings and docs. The reader should see in a few seconds what they need to do and can skip the rest.
 
-1. **TL;DR.** One short lead sentence with the answer or the state of things (skip it if the bullets say it all), then 2–4 short bullets, one fact each. Not a paragraph. Example:
+1. **TL;DR.** One short sentence with the answer or the state of things. Add up to 4 short bullets, one fact each, only if needed; often the sentence is enough. Not a paragraph. Example:
    > **TL;DR:** Course gets its own section on the knowledge-base site.
    > - Chapter sidebar for navigation.
    > - JavaScript does work on Flowershow (I was wrong earlier), so polls and small games are possible.
