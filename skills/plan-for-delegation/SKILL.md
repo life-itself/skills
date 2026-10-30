@@ -298,6 +298,6 @@ If any item fails, revise the spec before handing off.
 
 - Asking too many questions before producing anything
 - Producing a spec that requires the AI to make the decisions the user should have made
-- Leaving "context" vague ("see the project notes") instead of specific ("see `projects/flowershow.md` lines 20-35")
+- Leaving "context" vague ("see the project notes") instead of specific ("see `sor-flowershow-theme.md` lines 20-35")
 - Making leaf tasks too large to complete autonomously
 - Forgetting to answer anticipated questions upfront

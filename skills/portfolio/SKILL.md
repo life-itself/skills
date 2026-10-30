@@ -64,7 +64,11 @@ questions, then you infer everything you can and check it fast.
    if none are obvious, ask "any first actions?" — fine to leave empty if I say so.
 5. **Write the file** once I confirm.
    - Initiative → `initiatives/<semantic-slug>.md`.
-   - Project → `projects/YYYY-<kebab-title>.md` (year = `created`'s year).
+   - Project → `projects/YYNN-<kebab-title>.md` in the repo where the work lives
+     (`YY` = year created, `NN` = next number across all repos; see the data
+     model's "Project number allocation"). Extra files (plans, LTP outputs,
+     research) go in `projects/YYNN-<kebab-title>/`. Outputs the project makes
+     (a design system, a kit, a site) live outside `projects/`.
    - Frontmatter: required `title`, `description`, `created` (today), `status`
      (default `backlog`) + any confirmed optional fields. Omit empty fields. If
      `github` given and `tracker` not, add `tracker: {github}/issues`. Body =
