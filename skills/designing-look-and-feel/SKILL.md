@@ -1,6 +1,6 @@
 ---
 name: designing-look-and-feel
-description: Use when asked for a site redesign, a new theme or visual identity, a design system, a logo or wordmark, "mockups" or "design directions" for a website or product — before producing any full-page mockup or theme CSS.
+description: Use for any real design work (a site redesign, a theme or visual identity, a design system, a logo, a slide kit or deck look, a component such as a navigation or contents picker), or when asked for "mockups" or "design directions", before producing any mockup, theme CSS or build.
 license: Proprietary
 metadata:
   author: rgrp
@@ -9,6 +9,27 @@ metadata:
 ---
 
 # Designing look and feel
+
+## The cycle (any design work)
+
+Rufus's process, from the slides kit (2026-10-31), where skipping steps cost three rounds:
+
+1. **Brief, then review.** Write the brief in markdown: goal, who it's for, the kinds of use and what each needs, what's fixed, and a done-check. Answer the first questions in the brief (what kinds, what each needs, good practice) *before* building, and have Rufus review them. Have a fresh subagent critique the brief too.
+2. **Research and analysis.** Find out why the things we admire work. Take one factor at a time (layout, type, size ratios, colour, pictures), with measurements, not impressions.
+3. **Mood boards.** Real references, each captioned with what to take and what to leave. Make them for the parts as well as the whole: a component such as a contents picker gets its own board.
+4. **Mockups.** Two or three directions side by side on one page. Link the real thing (a live deck, a page), not only thumbnails.
+5. **Select.** Rufus picks, or picks a blend. Give each decision a recommendation.
+6. **Build.** Build the chosen direction properly and use it on real work.
+7. **Cycle.** If using it shows a problem, go back to 3 (mood boards) or 4 (mockups), not straight to more build.
+
+**Watch out for:**
+
+- **One criterion taking over.** On the slides kit it was the Zoom size floor. Keep the feel and the real use in view.
+- **Misquoting the human's feedback.** Quote it exactly, with its scope ("too small" meant the small text, not everything).
+- **Reopening settled decisions.** Write each one down where the next agent will read it.
+
+The stages below are this cycle as it applies to a website's visual identity.
+
 
 ## Overview
 
