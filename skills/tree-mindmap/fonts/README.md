@@ -1,1 +1,0 @@
-Apfel Grotezk (Regular, Mittel) by Collletttivo, free under the SIL Open Font License. Copied from the Seeds of Renaissance design system (`~/src/life-itself/design/sor-design-system/system/fonts/`), whose diagram style this skill borrows. The renderer embeds them in the SVG so it renders anywhere.
