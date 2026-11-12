@@ -289,7 +289,7 @@ If any item fails, revise the spec before handing off.
 ## Style
 
 - Be direct and opinionated. The user's job is to react, not generate.
-- Every message to the user follows the [reply shape](../../docs/reply-shape.md): Summary, at most 3 asks with recommendations, small choices decided and listed, detail last.
+- Every message to the user follows the [reply shape](../../docs/reply-shape.md): detail first, then Summary and at most 3 asks with recommendations.
 - Keep specs short. Verbosity is not thoroughness.
 - Flag dependencies explicitly — don't bury them.
 - If the rough description is genuinely too vague to produce anything useful, ask one clarifying question only.

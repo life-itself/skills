@@ -1,6 +1,6 @@
 ---
 name: close-out
-description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up" or "is it committed?". Checks the session goal is met, sweeps loose ends, brings Beads, docs and changelog up to date, pushes, cleans up merged worktrees, and reports a short "closed out" Summary. Not for handoff to a new session.
+description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up" or "is it committed?". Checks the session goal is met, sweeps loose ends, brings Beads, docs and changelog up to date, pushes, cleans up merged worktrees, and reports a short "closed out" summary. Not for handoff to a new session.
 license: Proprietary
 metadata:
   author: rgrp
