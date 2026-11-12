@@ -26,11 +26,10 @@ Evolution of the graph, version by version: [project-reporting/evolution.md](pro
 
 ## Shape of a status report
 
-1. TL;DR (one or two lines, honest about slips).
+1. Summary (one or two lines, honest about slips).
 2. Goal-tree table.
 3. One graph per track, with a legend.
-4. **You:** at most three asks, each with a recommendation.
-5. **Decided:** one-liners.
+4. **You:** at most three asks or things to review, each with a recommendation.
 
 ## Example: Track 1 graph (sor-website, 2026-10-23)
 

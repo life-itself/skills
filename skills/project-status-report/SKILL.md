@@ -1,6 +1,6 @@
 ---
 name: project-status-report
-description: Use when asked "where are we?", for a status overview, or for a launch-readiness check on a project planned with the Logical Thinking Process (a goal tree with critical success factors, and a transition plan) and tracked in Beads. Gathers status from the beads and checks it against the repo, then writes a short report — TL;DR, a goal-tree table, one ASCII dependency graph per track, asks and decisions. Not for a daily task list or a changelog.
+description: Use when asked "where are we?", for a status overview, or for a launch-readiness check on a project planned with the Logical Thinking Process (a goal tree with critical success factors, and a transition plan) and tracked in Beads. Gathers status from the beads and checks it against the repo, then writes a short report — summary, a goal-tree table, one ASCII dependency graph per track, asks and decisions. Not for a daily task list or a changelog.
 license: Proprietary
 metadata:
   author: rgrp
@@ -29,17 +29,16 @@ If there is no goal tree, say so and report against the transition streams inste
 3. `bd dep tree <goal bead>`: the edges are the `[blocks]` lines; `[parent-child]` lines are context, and a shared node is shown once.
 4. Stage labels per page or feature (`bd list --all --label=stage:signed-off`, `--label=stage:review`). `--all` matters: plain `bd list` hides closed beads. The listing also prints unlabelled children as tree context and counts labelled child tasks, so count pages, not rows. Read the label, not only the status: a bead can be `in_progress` while its page is signed off.
 5. **Map every CSF to its beads.** For each CSF, find the beads that close its gap, whether or not they hang off the goal bead. Work that matters often is not a formal dependency (forms wiring was not under the SoR launch bead). Anything you find that way goes in the graph, and if it should block the goal, say so as an ask.
-6. **Check claims against the repo.** For anything you would mark done: is it merged (`git fetch`, then `git branch -a --merged origin/main`; a worktree's local `main` may be stale)? Is it live (fetch the URL)? Is all of it done, or only the v1 part? When the bead and the repo disagree, the repo wins: draw what is true and log it under **Decided** ("Redirects ●: merged, bead still open"). Say what you could not check.
+6. **Check claims against the repo.** For anything you would mark done: is it merged (`git fetch`, then `git branch -a --merged origin/main`; a worktree's local `main` may be stale)? Is it live (fetch the URL)? Is all of it done, or only the v1 part? When the bead and the repo disagree, the repo wins: draw what is true and list it under **You** for review ("Redirects ●: merged, bead still open; close the bead?"). Say what you could not check.
 
 ## Report shape
 
-Follow [reply shape](../../docs/reply-shape.md). A full report runs past one screen, so in chat: one-line TL;DR at the top, then the detail (2–3), then the full TL;DR, **You:** and **Decided:** at the end.
+Follow [reply shape](../../docs/reply-shape.md). A full report runs past one screen, so in chat: one-line summary at the top, then the detail (2–3), then `---`, **Summary** and **You** at the end.
 
-1. **TL;DR**: one or two lines. Honest about slips: if a target date has passed or will, say so and give the new estimate.
+1. **Summary**: one or two lines. Honest about slips: if a target date has passed or will, say so and give the new estimate.
 2. **Goal-tree table**: one row per CSF. Columns: CSF (short name) · status 🟢 met, or on track for the target / 🟡 gap that will close by the target / 🔴 will not be met by the target, or blocked · what is live · the gap · the bead that closes it (plain name first, then ID).
 3. **One ASCII graph per track** (rules below).
-4. **You:** at most three asks, each with a recommendation and one line of reasoning.
-5. **Decided:** one-liners for the small choices you made (e.g. "treated Papers as at review: page live, sign-off pending").
+4. **You:** at most three asks or things to review, each with a recommendation and one line of reasoning (e.g. "treated Papers as at review: page live, sign-off pending").
 
 ## Graph rules
 

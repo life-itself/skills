@@ -90,7 +90,7 @@ unblocks other work (check `bd blocked`) or ships something visible. Say
 which criterion is doing the work for the top few — don't just present a
 bare ranking.
 
-**Report in the [reply shape](../../docs/reply-shape.md).** Open with a TL;DR: the 1–3 things to do next and why. Then **You:** at most 3 items that need the user's decision or a session with them, each with a recommendation. Name projects and tasks in plain words, with IDs in brackets. The full table comes after that, or in the sweep's dated file if it is long: one row per item, grouped by lane:
+**Report in the [reply shape](../../docs/reply-shape.md).** Open with a summary: the 1–3 things to do next and why. Then **You:** at most 3 items that need the user's decision or a session with them, each with a recommendation. Name projects and tasks in plain words, with IDs in brackets. The full table comes after that, or in the sweep's dated file if it is long: one row per item, grouped by lane:
 
 | Lane | Project | bd entry | Why ranked here | Suggested next |
 |---|---|---|---|---|
@@ -289,7 +289,7 @@ If any item fails, revise the spec before handing off.
 ## Style
 
 - Be direct and opinionated. The user's job is to react, not generate.
-- Every message to the user follows the [reply shape](../../docs/reply-shape.md): TL;DR, at most 3 asks with recommendations, small choices decided and listed, detail last.
+- Every message to the user follows the [reply shape](../../docs/reply-shape.md): Summary, at most 3 asks with recommendations, small choices decided and listed, detail last.
 - Keep specs short. Verbosity is not thoroughness.
 - Flag dependencies explicitly — don't bury them.
 - If the rough description is genuinely too vague to produce anything useful, ask one clarifying question only.

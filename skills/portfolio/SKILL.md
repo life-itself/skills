@@ -139,7 +139,7 @@ frontmatter silently.
      initiative/project-scale items sitting in `ideas/`.
    - **Stale** — `status: in-progress` but file untouched > 6 months (use git mtime).
    - **Should-archive** — `status: done` / `superseded` still in a live folder.
-2. **Report** in the [reply shape](../../docs/reply-shape.md): a TL;DR with counts per category, then **You:**
+2. **Report** in the [reply shape](../../docs/reply-shape.md): a summary with counts per category, then **You:**
    the groups that need a call, each with a recommended fix. File lists come
    after that, or in a linked file.
 3. **Fix interactively** — offer per group (or per file). Apply only what the

@@ -14,7 +14,7 @@ metadata:
 One skill, three modes. All modes share the same **context core** and the same
 principles: **suggest from context first, never start from a blank page; ask one
 question at a time; keep it light; bias to commitment over completeness.**
-Every play-back and question follows the [reply shape](../../docs/reply-shape.md): a short TL;DR, at most 3 asks each with a
+Every play-back and question follows the [reply shape](../../docs/reply-shape.md): a short summary, at most 3 asks each with a
 suggested answer, and no full draft plan until the user has confirmed the shape.
 A play-back is at most 5 bullets.
 

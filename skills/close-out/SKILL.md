@@ -1,6 +1,6 @@
 ---
 name: close-out
-description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up" or "is it committed?". Checks the session goal is met, sweeps loose ends, brings Beads, docs and changelog up to date, pushes, cleans up merged worktrees, and reports a short "closed out" TL;DR. Not for handoff to a new session.
+description: Use when the user says "close out", "are we done?", "we're done", "done for today", "wrap up" or "is it committed?". Checks the session goal is met, sweeps loose ends, brings Beads, docs and changelog up to date, pushes, cleans up merged worktrees, and reports a short "closed out" Summary. Not for handoff to a new session.
 license: Proprietary
 metadata:
   author: rgrp
@@ -18,7 +18,7 @@ If work will continue in a new session, also follow [session-handoff.md](../../s
 
 - **Cheap and quick.** This runs at the end of a long session, while the user waits. The conversation is already in context: sweep it from memory, not by re-reading files. Aim for 4–6 tool calls: batch commands, send independent calls in parallel, `grep` rather than `Read`, no subagents. Think the sweep through silently; write only the report.
 - **Thorough where it is free.** Skip a step only on a concrete guard (listed per step), never because the session felt small.
-- **Ask little.** Default what you can and list it under **Decided**. Ask only where a thread is genuinely ambiguous: at most 3 questions, each with a recommendation.
+- **Ask little.** Default what you can and don't list it; anything worth the user checking goes under **You**. Ask only where a thread is genuinely ambiguous: at most 3 questions, each with a recommendation.
 - **Evidence, not claims.** "Done", "pushed", "synced" come from output you read after the last change. "Fix, don't just report": a missing bead or unpushed commit, do it and say so.
 
 ## 0. Are we done?
@@ -35,7 +35,7 @@ In parallel, in one message:
 
 ## 2. Loose-end sweep (from memory)
 
-Walk the whole conversation, plus the state output's "user asks" list (it catches threads lost to context compaction): things asked for, started, put off, side ideas, promised steps ("details below"), the user's unanswered questions, side sessions. Bucket each: **Done** (close bead), **Logged** (asked for, or an obvious follow-up: make sure a bead exists), **Dropped** (user moved on: Decided, if substantial), **Owed** (your undelivered promise or answer: deliver now), **Unclear** (half-built, could go either way).
+Walk the whole conversation, plus the state output's "user asks" list (it catches threads lost to context compaction): things asked for, started, put off, side ideas, promised steps ("details below"), the user's unanswered questions, side sessions. Bucket each: **Done** (close bead), **Logged** (asked for, or an obvious follow-up: make sure a bead exists), **Dropped** (user moved on: mention under **You** if substantial), **Owed** (your undelivered promise or answer: deliver now), **Unclear** (half-built, could go either way).
 
 If anything is **Unclear**, ask about all of them in one message and stop, e.g. "CSV export is half-built (parser, no UI). Finish, log, or drop? I'd log it: the parser is reusable." Otherwise run straight through.
 
@@ -80,7 +80,7 @@ First look at the `??` lines in the state output; anything that should not go in
 
 Skip if the state output lists no other worktrees and no `!! LINKED WORKTREE`. A worktree can go only if it is **merged** (or its PR is merged: squash merges show "unmerged", so check `gh pr list --head <branch> --state merged`), **dirty:0**, and belongs to this session or a session this one started. Never touch others' worktrees or a running session's.
 
-- **Plain git worktree** this session made (outside `.claude/worktrees/`): `git worktree remove <path> && git branch -d <branch>` (`-d` refuses unmerged branches). List under Decided.
+- **Plain git worktree** this session made (outside `.claude/worktrees/`): `git worktree remove <path> && git branch -d <branch>` (`-d` refuses unmerged branches). Mention it in **State**.
 - **App-made worktree** (`.claude/worktrees/...`) of a finished child session: the app removes it when the session is archived, so don't `git worktree remove` it. Put one ask under **You:** ("Archive 3 finished child sessions? Branches merged, worktrees clean.") and on yes call `mcp__ccd_session_mgmt__archive_session` for each.
 - **This session's own worktree**, branch merged: the cleanup is archiving this session, which ends the conversation. Offer it as the last line of the report ("Archive this session? It removes its worktree.") and on yes call `archive_session("self")` after the ✅ rename.
 
@@ -89,12 +89,11 @@ Skip if the state output lists no other worktrees and no `!! LINKED WORKTREE`. A
 About 150 words, per [docs/reply-shape.md](../../docs/reply-shape.md):
 
 ```
-✅ Closed out. <one-line TL;DR of what this session delivered>
+✅ Closed out. <one-line summary of what this session delivered>
 
 **You:** <only big asks still open; omit if none>
 **Done:** <shipped items, with live links>
 **Logged for later:** <plain name (bead-id), one per line>
-**Decided:** <defaults applied, incl. anything dropped>
 **State:** committed and pushed (<branch>), Beads synced, <checks and evidence>.
 ```
 
