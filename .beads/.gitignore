@@ -85,3 +85,6 @@ bd.db
 
 # Issue data syncs through Dolt; JSONL is optional local export.
 issues.jsonl
+
+# Added by bd (missing required patterns)
+dolt-server-config.yaml
