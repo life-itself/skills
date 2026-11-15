@@ -106,7 +106,8 @@ Stop here. Do not create beads yet unless the user asks.
 One file per piece of work, in the destination repo:
 
 - If the repo has a root question file for this work (e.g. `ROADMAP.md`) use its tree and put the SCQ at the top.
-- Otherwise `docs/plans/YYYY-MM-DD-<topic>-scq.md`. In this planning repo with no destination repo: `docs/plans/` too.
+- Else, if the work has a project file (e.g. `projects/<slug>.md` in a planning repo), put the SCQ in that file as a `## SCQ` section (Rufus, 2026-11-15). Create the project file first if it is missing.
+- Otherwise `docs/plans/YYYY-MM-DD-<topic>-scq.md`.
 
 ```md
 # <Topic> — SCQ
