@@ -7,14 +7,14 @@ metadata:
   repo: planning
 ---
 
-> **Repo-bound skill.** Expects a planning repo laid out as described in that repo's `docs/data-model.md` (paths below like `docs/`, `projects/`, `portfolio/index.js` are relative to that repo, not this skills repo). Install it per-repo (symlink into that repo's `.claude/skills/`), not user-level. Making the layout configurable at setup is an open item.
+> **Repo-bound skill.** Expects a planning repo with `initiatives/`, `projects/`,
+> `ideas/`, `portfolio/index.js` and Beads (paths below are relative to that
+> repo). Install it per-repo, not user-level. Making the layout configurable at
+> setup is an open item.
 
 # Portfolio
 
-Create and maintain the portfolio. One skill, three modes. The **data model**
-(folders, frontmatter schema, vocabularies) lives in
-[`docs/data-model.md`](docs/data-model.md) — read it when you need field
-or naming detail; do not duplicate the schema here.
+Create and maintain the portfolio. One skill, three modes.
 
 This skill is about *the portfolio itself*. Deciding **what to work on** (week /
 day / now) is the separate `planning` skill.
@@ -22,11 +22,39 @@ day / now) is the separate `planning` skill.
 Pick the mode from the ask:
 
 - **add** — "add a project", "new initiative", capturing something to pursue.
-- **update** — "next actions for X", "what's next on X", refreshing a file's tasks.
+- **update** — "next actions for X", "what's next on X", refreshing its tasks.
 - **garden** — "tidy the portfolio", "find orphans", periodic cleanup.
 
 Shared principles: **let me outflow first, then guess and check; suggest from
 context; keep it light; omit empty fields.**
+
+## Model
+
+- **Type is the folder**, not a field. `initiatives/` = enduring effort
+  (`<semantic-slug>.md`); `projects/` = bounded effort, almost always under an
+  initiative; `ideas/` = a few sentences, same required frontmatter. Unsure
+  between idea and initiative/project → `ideas/`, promote later.
+- **Hierarchy** is initiative → project, via `parent: [[initiative-slug]]`
+  (slug = filename stem; match the repo's existing quoting). Theme and org are
+  `tags`, not nesting.
+- **Required frontmatter:** `title`, `description` (one sentence, < 120 chars),
+  `created` (`YYYY-MM-DD`), `status`. Add optional fields only when known, e.g.
+  `github`, `url`, `tracker` (default `{github}/issues`), `workspace`, `phase`,
+  `tags`, `due`, `tickler`, `status_notes`. For a field not listed here, copy
+  how existing files in the repo use it; don't invent one.
+- **status:** open = `next` · `in-progress` · `backlog` (default) · `someday` ·
+  `paused` (+ `tickler: YYYY-MM-DD` to resurface); closed = `done` (+
+  `completed`, `resolution: fixed`) · `superseded` (+ `superseded_by`) ·
+  `dropped` · `archived`. A project that finished and led to the next one uses
+  `followed_by`/`follows`, not supersede.
+- **Status updates** go in `status_notes` (dated string, or a list of dated
+  strings), not a body section.
+- **Tasks live in Beads, not the file.** Each next action is a `bd` issue
+  labelled `project:<slug>` plus `kind:plan|run` and `who:ai|collab|rufus`;
+  blocking is `bd dep add`. If the work's own repo has `.beads`, create them
+  there instead; with no `workspace`/`github`, use this repo's Beads. Default
+  `--priority=2` and label `triaged`. Don't copy a remote backlog: one issue pointing at it is
+  enough.
 
 **The index.** `portfolio/index.js` is the generated index of every item
 (`globalThis.PORTFOLIO_INDEX`, an array with `slug`, `type`, `title`,
@@ -58,6 +86,7 @@ questions, then you infer everything you can and check it fast.
    - **Parent** — best-guess initiative from the index, e.g. `[[life-itself]]`
      (projects should almost always have one).
    - **Tasks** — 2-5 candidate next actions pulled from the outflow (see step 4).
+   - For each task, its `kind:` and `who:` labels.
    - Mention any other fields only if the outflow implied them (`github`, `url`,
      `tracker`, `phase`, `tags`). Don't ask for empty ones.
 4. **Tasks.** Always offer initial tasks. Derive candidates from the outflow;
@@ -66,29 +95,31 @@ questions, then you infer everything you can and check it fast.
    - Initiative → `initiatives/<semantic-slug>.md`.
    - Project → `projects/YYNN-<kebab-title>.md` in the repo where the work lives.
      `YY` = creation year; `NN` = highest number for that year in that repo + 1
-     (start at `01`). Repo name/Beads prefix scopes the ID. Extra files (plans, LTP outputs,
+     (start at `01`). Old `YYYY-slug` files are legacy: don't count or rename
+     them. Repo name/Beads prefix scopes the ID. Extra files (plans, LTP outputs,
      research) go in `projects/YYNN-<kebab-title>/`. Outputs the project makes
      (a design system, a kit, a site) live outside `projects/`.
-   - Frontmatter: required `title`, `description`, `created` (today), `status`
-     (default `backlog`) + any confirmed optional fields. Omit empty fields. If
-     `github` given and `tracker` not, add `tracker: {github}/issues`. Body =
-     full description, then `## Tasks` with the agreed actions.
+   - Frontmatter per [Model](#model); body = full description. No task list.
+   - If the parent has a `## Projects` list, append
+     `- [[projects/<file-stem>|Title]]`.
+   - Create the agreed tasks in Beads (see [Model](#model)), then run
+     `node scripts/build-index.js`.
 
 ```
 ---
-title: [Title]
-description: [Short description]
-created: [YYYY-MM-DD]
+title: Example Project
+description: One sentence under 120 characters.
+created: 2026-11-16
 status: backlog
-parent: [[parent-slug]]
+parent: [[life-itself]]
 ---
 
-[Full description]
+Two to four sentences: what, why, what done looks like.
+```
 
-## Tasks
-
-- [ ] ⏭️ [first action]
-- [ ] [next action]
+```bash
+bd create --title="Draft the API spec" --description="..." --type=task \
+  --priority=2 --labels=triaged,project:2601-example-project,kind:run,who:collab
 ```
 
 Fallback (thin outflow, no clear inference): walk type → description → parent →
@@ -98,28 +129,23 @@ tasks as single quick questions, one at a time.
 
 ## Mode: update
 
-Refresh a file's next actions. Fast and conversational — this repo caches only
-3-5 immediate next actions; full backlogs live in the tracker.
+Refresh an item's next actions in Beads. Fast and conversational — keep 3-5
+open actions per project; full backlogs live in the tracker.
 
-1. **Which file?** If not given, ask. Read it for description + existing tasks.
+1. **Which item?** If not given, ask. Read the file for context and
+   `bd list --label=project:<slug>` for open tasks.
 2. **Surface next actions** via quick prompts (S/C/Q/H framing optional):
    - **Situation** — where do things stand right now?
    - **Complication** — anything blocked or needing a decision?
    - **Next** — name 1-3 concrete actions (verb-first, completable in one sitting).
 3. **Reflect back** the actions, tidied, and ask before writing.
-4. **Write** to `## Tasks` as a checklist. Mark the immediate next action ⏭️.
-   Group under `###` headings only if there are distinct streams. Keep to 3-5.
+4. **Write** to Beads: create new issues, close done ones, `bd dep add` where
+   one waits on another. Add a dated `status_notes` line if the situation
+   changed. If the file still has an old `## Tasks` list, offer to move it to
+   Beads and delete the list.
 5. **External tasks.** If the canonical list lives elsewhere, surface the
    `tracker` / `github` / `url` and ask for the next action — do not fetch or
    invent backlog detail.
-
-```
-## Tasks
-
-- [ ] ⏭️ Draft the API spec
-- [ ] Set up the GitHub repo
-- [ ] Message Jo about timeline
-```
 
 ---
 
@@ -137,8 +163,12 @@ frontmatter silently.
    - **Missing required frontmatter** — no `status` / `description` / `created`.
    - **Misfiles** — idea-scale items sitting in `initiatives/`, or
      initiative/project-scale items sitting in `ideas/`.
-   - **Stale** — `status: in-progress` but file untouched > 6 months (use git mtime).
-   - **Should-archive** — `status: done` / `superseded` still in a live folder.
+   - **Stale** — `status: in-progress` but no commit to the file in 6 months
+     (`git log -1 --format=%cs <file>`).
+   - **Closed but incomplete** — `done` without `completed`, `superseded`
+     without `superseded_by`. (Closed items may stay in `projects/` or `projects/archive/`.)
+   - **No next action** — `next` / `in-progress` project with no open
+     `project:<slug>` Bead; or a leftover `## Tasks` list to move to Beads.
 2. **Report** in the [reply shape](../../docs/reply-shape.md): a summary with counts per category, then **You:**
    the groups that need a call, each with a recommended fix. File lists come
    after that, or in a linked file.
@@ -150,7 +180,8 @@ frontmatter silently.
 
 ## Common mistakes (all modes)
 
-- Duplicating the schema here instead of pointing to `docs/data-model.md`.
+- Keeping tasks as a `## Tasks` checklist in the file instead of in Beads.
+- Adding a `type` field: the folder is the type.
 - Asking broad open questions before offering context-based suggestions.
 - Asking more than one question at a time.
 - Long reports, or asks buried at the bottom; follow the [reply shape](../../docs/reply-shape.md).
