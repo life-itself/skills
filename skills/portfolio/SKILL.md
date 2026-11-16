@@ -11,10 +11,7 @@ metadata:
 
 # Portfolio
 
-Create and maintain the portfolio. One skill, three modes. The **data model**
-(folders, frontmatter schema, vocabularies) lives in
-[`docs/data-model.md`](docs/data-model.md) — read it when you need field
-or naming detail; do not duplicate the schema here.
+Create and maintain the portfolio. One skill, three modes.
 
 This skill is about *the portfolio itself*. Deciding **what to work on** (week /
 day / now) is the separate `planning` skill.
@@ -64,9 +61,9 @@ questions, then you infer everything you can and check it fast.
    if none are obvious, ask "any first actions?" — fine to leave empty if I say so.
 5. **Write the file** once I confirm.
    - Initiative → `initiatives/<semantic-slug>.md`.
-   - Project → `projects/YYNN-<kebab-title>.md` in the repo where the work lives
-     (`YY` = year created, `NN` = next number across all repos; see the data
-     model's "Project number allocation"). Extra files (plans, LTP outputs,
+   - Project → `projects/YYNN-<kebab-title>.md` in the repo where the work lives.
+     `YY` = creation year; `NN` = highest number for that year in that repo + 1
+     (start at `01`). Repo name/Beads prefix scopes the ID. Extra files (plans, LTP outputs,
      research) go in `projects/YYNN-<kebab-title>/`. Outputs the project makes
      (a design system, a kit, a site) live outside `projects/`.
    - Frontmatter: required `title`, `description`, `created` (today), `status`
