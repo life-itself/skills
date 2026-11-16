@@ -7,7 +7,7 @@ metadata:
   repo: planning
 ---
 
-> **Repo-bound skill.** Expects a planning repo laid out as described in that repo's `docs/data-model.md` (paths below like `docs/`, `projects/`, `portfolio/index.js` are relative to that repo, not this skills repo). Install it per-repo (symlink into that repo's `.claude/skills/`), not user-level. Making the layout configurable at setup is an open item.
+> **Repo-bound skill.** Runs in a portfolio repo (paths below are relative to that repo). Uses the shared [portfolio data model](../portfolio/data-model.md), plus the repo's own `docs/data-model.md` if present, which wins where they differ.
 
 # Changelog roll-up
 

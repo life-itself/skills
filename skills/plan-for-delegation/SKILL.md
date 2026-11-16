@@ -21,7 +21,7 @@ Three modes:
 
 As of 2026-08-21 this is an **audit**, not a derivation. Actionable task
 state lives in `bd`, not in project frontmatter or prose — see
-[docs/plans/2026-08-21-bd-task-layer-design.md](../../docs/plans/2026-08-21-bd-task-layer-design.md).
+the [data model](../portfolio/data-model.md#tasks-beads).
 The sweep's job is to read what `bd` already claims, spot-check the claims
 that are old enough or important enough to doubt, and propose corrections —
 not to re-derive every lane assignment from scratch every time. Apply those corrections only when the user has authorized the reconciliation. Phase 1 of
@@ -44,7 +44,7 @@ exists to catch on an ongoing basis, cheaply.
 
 **Step 2 — candidate pool.** `status: next|in-progress|backlog|someday` from
 the index, excluding `paused` items whose `tickler` is in the future
-(deliberately deferred — see `docs/data-model.md`). Wider than just
+(deliberately deferred — see the [data model](../portfolio/data-model.md)). Wider than just
 `next|in-progress` on purpose — genuinely important work often isn't
 labeled `next` yet.
 
@@ -255,7 +255,8 @@ Then revise based on the answer. Do not ask multiple questions.
 ### 6. Record the resulting readiness
 
 After revision, assess the result honestly against the two-axis model in
-[docs/bd-task-conventions.md](../../docs/bd-task-conventions.md):
+the [data model](../portfolio/data-model.md#tasks-beads) (and the repo's local
+`docs/data-model.md`):
 
 - `kind:plan, who:collab` while scope, approach, constraints, or what
   "done" means still need shaping in a session — AI drafts, Rufus steers

@@ -23,5 +23,13 @@ would not change what it does, cut it.
 - **One concrete example** of each output beats a paragraph describing it.
   Keep examples current: a stale example is copied faithfully.
 - **Name the common mistakes** you have actually seen, briefly.
+- **Core in `SKILL.md`, detail in a reference file.** `SKILL.md` is read every
+  time, so keep it to the workflow and the rules most often got wrong. Put
+  material needed only sometimes (a full schema, setup steps) in a file in the
+  skill folder, and say when to read it.
+- **Shared reference, one copy.** If several skills need the same model, keep
+  one file (e.g. [portfolio/data-model.md](../skills/portfolio/data-model.md))
+  and have each skill link to it. Repos can add a local `docs/data-model.md`
+  that overrides it; skills must check for one.
 - **Point to shared conventions** (e.g. [reply shape](reply-shape.md)) instead
   of restating them.
