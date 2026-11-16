@@ -11,7 +11,10 @@ metadata:
 
 # Portfolio
 
-Create and maintain the portfolio. One skill, three modes.
+Create and maintain the portfolio. One skill, three modes. The **data model**
+(folders, frontmatter schema, vocabularies) lives in
+[`docs/data-model.md`](docs/data-model.md) — read it when you need field
+or naming detail; do not duplicate the schema here.
 
 This skill is about *the portfolio itself*. Deciding **what to work on** (week /
 day / now) is the separate `planning` skill.
