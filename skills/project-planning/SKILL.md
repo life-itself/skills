@@ -38,7 +38,6 @@ Spec mode takes a rough description, **drafts** the SCQ, issue tree and leaf spe
 - **Stay out of solutions.** If the user starts proposing answers, park them under "Ideas offered" and return to the situation. Solutions come after LTP.
 - **Do the reading yourself, then check it.** Read the repo, the bead and linked notes before the first question. Never ask the user for something you can read. But docs go stale: note each source's date, prefer the newest evidence (git log, recent files) over old plans, and put anything you read (not heard) into a playback as "I read X (dated Y) — still true?" rather than stating it as fact.
 - **Keep play-backs and sign-off asks short.** They follow the [reply shape](../../docs/reply-shape.md): what changed, then the one thing to confirm. Interview questions stay neutral, with no suggested answer (see above).
-- **Compress before sign-off.** The interview produces a brainstorm version; the SCQ is the compressed one. Before step 6, cut the situation and the complication to a short paragraph each (2–4 sentences, plus up to ~4 bullets), keeping only what the question depends on. Move the rest to an `## Appendix: brainstorm detail` in the same file, not into the SCQ (Rufus, 2026-11-16).
 - **Label what's certain.** In playbacks and in the file, keep three kinds apart: confirmed facts, things the user is unsure of, and guesses. Mark guesses `(guess)`.
 
 ## Flow
