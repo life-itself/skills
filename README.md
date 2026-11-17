@@ -1,12 +1,16 @@
 # Skills
 
-Agent skills and recipes used by Rufus Pollock and Life Itself, in one place so they can be installed, improved and shared together. Each skill is a folder in `skills/` with a `SKILL.md`, and works in both Claude Code and Codex.
+Agent skills for knowledge work: planning, closing out sessions, writing changelogs, research notes and visual design. By [Rufus Pollock](https://rufuspollock.com), and used day to day at [Life Itself](https://lifeitself.org).
 
-**Purpose:** one canonical home (not scattered across repos), easy to install everywhere, public so others can use and learn from them. Recent changes are in [changelog/](changelog/); the plan of work is in Beads (`bd list`).
+Each skill is a folder in `skills/` with a `SKILL.md`. They work in Claude Code and Codex. Recent changes are in [changelog/](changelog/), and the plan of work is in Beads (`bd list`).
 
 ## Install
 
-See [docs/install.md](docs/install.md). Short version: `npx skills add life-itself/skills -g`, or clone and symlink `skills/<name>` into `~/.claude/skills/` and `~/.agents/skills/`. Repo-bound skills (marked below) install per repo instead.
+```bash
+npx skills add rufuspollock/skills -g
+```
+
+Or clone the repo and symlink `skills/<name>` into `~/.claude/skills/` and `~/.agents/skills/`. Skills marked *repo-bound* below are installed per repo instead. Details: [docs/install.md](docs/install.md).
 
 ## Skills
 
@@ -30,4 +34,4 @@ See [docs/install.md](docs/install.md). Short version: `npx skills add life-itse
 
 ## Work in development
 
-[Adaptive delegation](docs/adaptive-delegation/adaptive-delegation-work-formulation-skill-2026-09-20.md): a reusable approach to turning rough intentions into delegation-ready work. The [wider orchestration vision](docs/adaptive-delegation/ai-work-orchestration-overall-vision-2026-09-20.md) provides context. Both documents are original design drafts; the skill is not implemented yet. See [NEXT.md](NEXT.md) for where to resume.
+[Adaptive delegation](docs/adaptive-delegation/adaptive-delegation-work-formulation-skill-2026-09-20.md): a reusable approach to turning rough intentions into delegation-ready work. The [wider orchestration vision](docs/adaptive-delegation/ai-work-orchestration-overall-vision-2026-09-20.md) provides context. Both documents are original design drafts; the skill is not implemented yet. Open work is tracked in Beads.

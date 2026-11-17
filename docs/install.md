@@ -5,7 +5,7 @@ Checked against current docs on 2026-10-17: Claude Code (code.claude.com/docs: s
 ## Short answer
 
 - **Rufus (author):** keep user-level symlinks into the working clone. Edits are live in both tools. Nothing to change.
-- **Teammate:** `npx skills add life-itself/skills -g` (or clone and symlink, same result).
+- **Teammate:** `npx skills add rufuspollock/skills -g` (or clone and symlink, same result).
 - **Later, if this grows beyond a few people:** add a plugin marketplace on top. Not now.
 
 ## Facts that drive the choice
@@ -20,7 +20,7 @@ Checked against current docs on 2026-10-17: Claude Code (code.claude.com/docs: s
 | Option | Claude Code | Codex | Live editing | Teammate effort | Verdict |
 |---|---|---|---|---|---|
 | **A. User-level symlinks** into a clone (`~/.claude/skills/x`, `~/.agents/skills/x` → clone) | yes | yes | yes, instant | clone + 2 `ln -s` per skill | **Author setup** |
-| **B. `npx skills add life-itself/skills -g`** (vercel-labs installer; symlinks both agents to one canonical copy) | yes | yes | no (copy of repo; `npx skills update`) | one command | **Teammate setup** |
+| **B. `npx skills add rufuspollock/skills -g`** (vercel-labs installer; symlinks both agents to one canonical copy) | yes | yes | no (copy of repo; `npx skills update`) | one command | **Teammate setup** |
 | **C. Plugin marketplace** (`.claude-plugin/marketplace.json` for Claude; `.agents/plugins/marketplace.json` for Codex; `plugin add owner/repo`) | yes | yes, separate manifest | cached; version bump or reload | two commands per tool; auto-update opt-in; admin can force via settings | Later |
 | **D. Per-repo copies** (`.claude/skills/`, `.agents/skills/` committed in each repo) | yes | yes | no | none once committed | Only for a repo that must work for anyone who clones it. Drifts. |
 | **E. Git submodule** of this repo in each repo | needs symlinks into `.claude/skills` anyway | same | no | high (submodule pain) | Avoid |
@@ -32,7 +32,7 @@ Checked against current docs on 2026-10-17: Claude Code (code.claude.com/docs: s
 - **Why:** only option that is instantly live for both tools and needs no manifests. Already working.
 - **Reversibility:** easily reversible (delete links). No action needed.
 
-### 2. Teammate install: `npx skills add life-itself/skills -g` (B)
+### 2. Teammate install: `npx skills add rufuspollock/skills -g` (B)
 - **Why:** one command, both agents, symlink mode keeps a single canonical copy, `npx skills update` pulls changes. Needs Node, which the team has. Fallback with no Node: `git clone` + `ln -s skills/<name> ~/.claude/skills/<name>` and the same for `~/.agents/skills/`.
 - **Reversibility:** easily reversible (`npx skills remove`). Verify once on a clean machine before announcing: I did not run the installer here, so the exact flags above come from its README only.
 
@@ -66,11 +66,11 @@ Checked against current docs on 2026-10-17: Claude Code (code.claude.com/docs: s
 ## Teammate steps (copy into README when ready)
 
 ```bash
-npx skills add life-itself/skills -g   # choose Claude Code and Codex when asked
+npx skills add rufuspollock/skills -g   # choose Claude Code and Codex when asked
 npx skills update -g                   # later, to pull changes
 ```
 
-No Node: `git clone https://github.com/life-itself/skills ~/src/life-itself/skills`, then for each skill, `ln -s ~/src/life-itself/skills/skills/<name> ~/.claude/skills/<name>` and the same into `~/.agents/skills/`.
+No Node: `git clone https://github.com/rufuspollock/skills ~/src/rufuspollock/skills`, then for each skill, `ln -s ~/src/rufuspollock/skills/skills/<name> ~/.claude/skills/<name>` and the same into `~/.agents/skills/`.
 
 ## Open items
 

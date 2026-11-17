@@ -6,7 +6,7 @@ created: '2026-10-26'
 owner: rufus
 status: done
 phase: sharing
-done_when: "Shared agent skills live in one shared repository (life-itself/skills) that any Life Itself repository can use."
+done_when: "Shared agent skills live in one shared repository (rufuspollock/skills) that any Life Itself repository can use."
 parent: 2605-project-management-infrastructure
 tracker: beads
 beads:
