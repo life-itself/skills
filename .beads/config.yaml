@@ -74,4 +74,4 @@
 export:
     auto: false
 sync:
-    remote: "git+ssh://git@github.com/rufuspollock/agent-skills.git"
+    remote: "git+ssh://git@github.com/rufuspollock/skills.git"
