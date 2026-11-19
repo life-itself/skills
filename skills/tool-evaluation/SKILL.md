@@ -1,6 +1,6 @@
 ---
 name: tool-evaluation
-description: Choosing a tool, app, software or service with a weighted comparison. Use when someone asks which tool to use or buy, wants alternatives to or a replacement for something they use now, or wants products compared — "which tool for X", "alternatives to X", "what should I buy", "compare A and B", "replace X", "is there something better than X". Not for choosing a code library inside a coding task.
+description: Choosing a tool, app, software, service, product or supplier with a weighted comparison. Use when someone asks which tool to use or buy, wants alternatives to or a replacement for something they use now, or wants products compared — "which tool for X", "alternatives to X", "what should I buy", "compare A and B", "replace X", "is there something better than X". Not for choosing a code library inside a coding task.
 license: MIT
 metadata:
   author: rgrp

@@ -44,7 +44,7 @@ Skills load in three levels (progressive disclosure), so cost grows only with us
 
 Rules that follow:
 
-- **No `README.md` inside a skill folder.** `SKILL.md` is the one source of truth and must read well for humans too. The human-facing listing lives in the root [README](../README.md), which links each `skills/<name>/SKILL.md`. Anthropic's own [skills repo](https://github.com/anthropics/skills) does the same; an older Anthropic skill-creator explicitly said not to add READMEs, install guides or changelogs to a skill. Test notes go in a `test-log.md` (see `project-planning`), not a README.
+- **README.md in a skill folder: optional, for humans.** `SKILL.md` is what agents read, so it stays the single source of the rules and is tuned for agents and tokens. A short `README.md` may sit beside it for people browsing GitHub: what the skill is for, an example prompt, where it came from, test status. Agents never need to read it, so don't link it from `SKILL.md` and never put rules there. (Open question: Anthropic's own [skills repo](https://github.com/anthropics/skills) has no per-skill READMEs and an older Anthropic skill-creator said not to add them; Rufus finds them useful. Trialled on `tool-evaluation` first.) Test notes go in a `test-log.md` (see `project-planning`).
 - **Reference files one level deep**, each linked directly from `SKILL.md` with a line saying when to read it. Nested links get read partially. Give any reference file over ~100 lines a contents list at the top. Name files for content (`rubric.md`, not `notes2.md`).
 - **Scripts over prose** for fragile, exact steps: say whether to run or read the file.
 
