@@ -1,6 +1,6 @@
 # Skills
 
-Agent skills for knowledge work: planning, closing out sessions, writing changelogs, research notes and visual design. By [Rufus Pollock](https://rufuspollock.com), and used day to day at [Life Itself](https://lifeitself.org).
+Agent skills for knowledge work: planning, closing out sessions, writing changelogs, research notes, tool choice and visual design. By [Rufus Pollock](https://rufuspollock.com), and used day to day at [Life Itself](https://lifeitself.org).
 
 Each skill is a folder in `skills/` with a `SKILL.md`. They work in Claude Code and Codex. Recent changes are in [changelog/](changelog/), and the plan of work is in Beads (`bd list`).
 
@@ -26,6 +26,7 @@ Or clone the repo and symlink `skills/<name>` into `~/.claude/skills/` and `~/.a
 | [project-planning](skills/project-planning/SKILL.md) | Plan big or new work properly: interview-style SCQ and issue tree, sign-off, then hand off to a Logical Thinking Process session. |
 | [project-status-report](skills/project-status-report/SKILL.md) | Report where a Beads + LTP project stands: TL;DR, a goal-tree table, one ASCII dependency graph per track, asks and decisions. *Draft.* |
 | [research-note](skills/research-note/SKILL.md) | Write a note about a person or field: pick the depth first (quick stub by default), or go deeper with a question tree, tiered evidence, a fact-check subagent and a credited portrait. *Draft.* |
+| [tool-evaluation](skills/tool-evaluation/SKILL.md) | Choose a tool or find alternatives to one: job stories, 3–5 weighted criteria, a scored shortlist with the current tool as baseline, one pick plus a backup, and a trial plan. From [Tool Evaluation](https://tao.rufuspollock.com/Tool+Evaluation). *Draft.* |
 
 ## Recipes
 

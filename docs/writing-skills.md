@@ -33,3 +33,41 @@ would not change what it does, cut it.
   that overrides it; skills must check for one.
 - **Point to shared conventions** (e.g. [reply shape](reply-shape.md)) instead
   of restating them.
+
+## Folder layout and loading
+
+Skills load in three levels (progressive disclosure), so cost grows only with use:
+
+1. **Frontmatter** (`name`, `description`): always in context, about 100 tokens per skill, for every installed skill. This is what decides whether the skill triggers.
+2. **`SKILL.md` body**: read when the skill triggers. Keep it under 500 lines (aim for under ~600 words in this repo).
+3. **Other files in the folder**: cost nothing until read. Scripts are run, and only their output enters context.
+
+Rules that follow:
+
+- **No `README.md` inside a skill folder.** `SKILL.md` is the one source of truth and must read well for humans too. The human-facing listing lives in the root [README](../README.md), which links each `skills/<name>/SKILL.md`. Anthropic's own [skills repo](https://github.com/anthropics/skills) does the same; an older Anthropic skill-creator explicitly said not to add READMEs, install guides or changelogs to a skill. Test notes go in a `test-log.md` (see `project-planning`), not a README.
+- **Reference files one level deep**, each linked directly from `SKILL.md` with a line saying when to read it. Nested links get read partially. Give any reference file over ~100 lines a contents list at the top. Name files for content (`rubric.md`, not `notes2.md`).
+- **Scripts over prose** for fragile, exact steps: say whether to run or read the file.
+
+## Frontmatter
+
+- `name`: lowercase letters, numbers, hyphens; at most 64 characters; must match the folder name. Noun names (`research-note`) and gerunds (`designing-look-and-feel`) are both fine; prefer the name people already use for the method.
+- `description`: at most 1,024 characters, third person. Give a short phrase of scope and then the triggers in detail ("Use when …", with the words a user would actually say), plus a "Not for …" clause if it could over-trigger. **Never summarise the steps**: agents follow the summary and skip the body.
+- House fields: `license: MIT`, and `metadata` with `author`, `status` (`draft` until tested on real use) and `origin` (link to the source page or note).
+
+## Token economy
+
+- Assume the agent is smart: add only what it would not do unaided. For each line, ask whether removing it would change the output.
+- One default, not a menu, with an escape hatch for exceptions.
+- No time-sensitive facts (prices, versions, "as of" dates) in the skill; tell the agent how to check them instead.
+- One term per concept throughout.
+
+## Testing
+
+Test before trusting (Anthropic's evaluation-driven approach and superpowers' RED-GREEN are the same idea):
+
+1. **Baseline:** give a fresh subagent a realistic task without the skill and note what it gets wrong.
+2. Write a short rubric (5–7 pass/fail checks) aimed at those failures, and write the skill to fix them, nothing more.
+3. **With skill:** run the same task in a fresh subagent told to read the `SKILL.md` first; score both against the rubric.
+4. Fix gaps, re-run. Record each run in the skill's `test-log.md`.
+
+Sources: [Anthropic skill best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices), [Agent Skills overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), [agentskills.io spec](https://agentskills.io/specification).
