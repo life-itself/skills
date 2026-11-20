@@ -22,7 +22,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-MARKER = "🤖 "
+MARKER = "— Rufus & 🤖"
 API = "https://chat.googleapis.com/v1/"
 SCOPES = [
     "https://www.googleapis.com/auth/chat.messages",
@@ -107,7 +107,7 @@ class Chat:
 def text_arg(t):
     t = sys.stdin.read() if t == "-" else t
     t = t.rstrip()
-    return t if t.endswith(MARKER.strip()) else t + "\n\n" + MARKER.strip()
+    return t if t.endswith(MARKER) else t + "\n\n" + MARKER
 
 
 def show(m):
