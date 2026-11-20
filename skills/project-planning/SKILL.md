@@ -118,10 +118,14 @@ Source: <bead / project / conversation>
 ## SCQ
 
 ### Situation
+**<optional one-sentence key point>**
+
 - <fact>
   - <short supporting detail, if needed>
 
 ### Complication
+**<optional one-sentence key point>**
+
 - <tension or cost>
 
 ### Question
@@ -140,9 +144,12 @@ Issue tree:
 
 ## Next
 LTP not yet run. Run `ltp-project` (or `reason-commons`) on this file in a new thread.
+
+## Appendix (optional)
+<supporting detail: data, examples, sources, longer background>
 ```
 
-Markdown pattern: Situation, Complication and Question are always headings, one level below the section that holds them (here `## SCQ` → `###`; inside an existing root file such as `ROADMAP.md`, nest them under whatever level fits). The issue tree is plain nested bullets directly under the Question (after its criteria) — no separate section, no tables. Situation and complication are **concise bullets**, one claim each, with short sub-bullets where a point needs support. No paragraphs. Keep any prose in long lines; do not hard-wrap.
+Markdown pattern: Situation, Complication and Question are always headings, one level below the section that holds them (here `## SCQ` → `###`; inside an existing root file such as `ROADMAP.md`, nest them under whatever level fits). The issue tree is plain nested bullets directly under the Question (after its criteria) — no separate section, no tables. Situation and complication are **concise bullets**, one claim each, with short sub-bullets where a point needs support. No paragraphs. Optionally, open Situation and Complication with a one-sentence key point in bold above the bullets, so a reader gets the gist at a glance. Supporting detail that would bloat the bullets (data, examples, sources, longer background) goes in an `## Appendix` at the end of the file, linked from the bullet it supports. Keep any prose in long lines; do not hard-wrap.
 
 ## Not yet covered (come back to these)
 
