@@ -106,7 +106,8 @@ class Chat:
 
 def text_arg(t):
     t = sys.stdin.read() if t == "-" else t
-    return t if t.startswith(MARKER) else MARKER + t
+    t = t.rstrip()
+    return t if t.endswith(MARKER.strip()) else t + "\n\n" + MARKER.strip()
 
 
 def show(m):
