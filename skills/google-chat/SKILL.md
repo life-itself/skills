@@ -60,7 +60,8 @@ Learned from the first What's Cooking post, where `## heading` and `•` bullets
 - Bold is double asterisks `**bold**`. Single asterisks `*x*` render as italic here, not bold. Italic `_italic_`. Links `<url|label>`.
 - Bullets: start the line with `- ` (dash, space); confirmed working. Don't type a `•` character.
 - Short: a bold heading, a one-line tl;dr, then bullets. Blank line between blocks.
-- Links go at the end, **each in its own paragraph** (blank line between them), as `Label: <url|text>`. A What's Cooking post on 2026-11-20 put both links on one line and they ran together.
+- Link syntax: a bare `https://...` URL is auto-linked, no brackets needed. Angle brackets are only Chat's syntax for custom link text, `<url|text>`; use it when the URL is long or ugly (Drive, GitHub blob paths).
+- Links go at the end, **each in its own paragraph** (blank line between them), as `Label: <url|text>` or `Label: https://...`. A What's Cooking post on 2026-11-20 put both links on one line and they ran together.
 - **Most important link first.** Chat seems to build its preview card from the first link in the message, so lead with the link that best explains the post: usually the changelog entry or write-up, then the thing itself (repo, folder, doc), then anything else.
 - Draft and show Rufus the final text before posting, as usual.
 
