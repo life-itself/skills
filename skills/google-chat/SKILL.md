@@ -57,11 +57,11 @@ Without dotenvx, the same post is one curl: `curl -X POST -H 'Content-Type: appl
 Learned from the first What's Cooking post, where `## heading` and `•` bullets showed as raw text, then two test posts:
 
 - Heading: a bold first line, `**Heading**`. No `##` (shows as raw text).
-- Bold is double asterisks `**bold**`. Single asterisks `*x*` render as italic here, not bold. Italic `_italic_`. Links `<url|label>`.
+- Bold is double asterisks `**bold**`. Single asterisks `*x*` render as italic here, not bold. Italic `_italic_`.
 - Bullets: start the line with `- ` (dash, space); confirmed working. Don't type a `•` character.
 - Short: a bold heading, a one-line tl;dr, then bullets. Blank line between blocks.
-- Link syntax: a bare `https://...` URL is auto-linked, no brackets needed. Angle brackets are only Chat's syntax for custom link text, `<url|text>`; use it when the URL is long or ugly (Drive, GitHub blob paths).
-- Links go at the end, **each in its own paragraph** (blank line between them), as `Label: <url|text>` or `Label: https://...`. A What's Cooking post on 2026-11-20 put both links on one line and they ran together.
+- **Clean bare URLs only.** Write `Changelog: https://...`, or the label on one line and the URL alone on the next. No `<url|text>` (Rufus saw it not render) and no markdown `[text](url)` (most chat systems don't support it, and Rufus prefers seeing the real URL). Rare exceptions only when Rufus asks.
+- Links go at the end, **each in its own paragraph** (blank line between them), as `Label: https://...`. A What's Cooking post on 2026-11-20 put both links on one line and they ran together.
 - **Most important link first.** Chat seems to build its preview card from the first link in the message, so lead with the link that best explains the post: usually the changelog entry or write-up, then the thing itself (repo, folder, doc), then anything else.
 - Draft and show Rufus the final text before posting, as usual.
 
@@ -70,9 +70,9 @@ Example ending:
 ```
 ...last bullet
 
-Changelog: <https://github.com/org/repo/blob/main/changelog/2026-11-20-x.md|what changed>
+Changelog: https://github.com/org/repo/blob/main/changelog/2026-11-20-x.md
 
-Shared drive: <https://drive.google.com/drive/folders/ID|Life Itself shared drive>
+Shared drive: https://drive.google.com/drive/folders/ID
 
 — Rufus & 🤖
 ```
