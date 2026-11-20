@@ -51,12 +51,23 @@ Not for: small CSS fixes, or building out a direction that is already chosen (go
 | Stage | What gets added to the brief page | Human gate |
 |---|---|---|
 | 0. Feel | One phrase every choice is judged against, plus 3 supporting notes, character, and "what we are not". Starts as a few bullets. | "Yes, that's us." |
-| 1. Mood board (can start raw) | The current site as a "before" shot. 6–12 real references (screenshots), each captioned **take →** and **leave →**. 2–3 anti-references. | "These references, these takes." |
+| 1. Mood board (can start raw) | The current site as a "before" shot. **5–10 references at most, each standing for a different direction** (one beautiful image each, shown large), captioned **take →** and **leave →**. A few extras for details worth stealing. 2–3 anti-references. Ends with a shortlist of 3–4 directions to pursue. | "These references, these takes, these directions." |
 | 2. Directions | 2–3 directions as **specimen cards side by side**, each a distinct reading of the feel. Each card has: wordmark, nav line, headline, standfirst, CTA, status line, hex swatches, type pairing, and one named signature component; underneath, *says / risk / draws on*. Mark one as recommended, and say why. | Pick one, or a blend. |
 | 3. Mark | 4–6 logo/wordmark options at nav size and favicon size. Recommendation marked. | Pick one. |
 | 4. Full pages | Only now: the chosen direction applied to the home page and one inner page with real copy, then to the real theme (e.g. a preview site). | Review, iterate, ship. |
 
 Stage 1 may ship alone and rough: a page of references and notes is a valid first version. Each later stage republishes the **same** page with a new section; it does not create a new artifact.
+
+## Keeping the mood board small and beautiful
+
+From Sutras (2026-11-20), where the first board was rejected as weak and a plan for 50 options as overwhelming:
+
+- **Scan wide, show little.** Look at as many candidates as you like, but the page shows 5–10 references at most. The long list stays in a file in the repo.
+- **Each reference is a direction.** Choose them to differ from each other, so that picking between them is picking a direction. The 2–3 options at stage 2 are then built from the chosen directions "with tweaks", not invented afresh.
+- **Beauty is the test.** For every image ask "where is the true beauty in this?" Relevant but plain does not qualify. Capture the beautiful moment (often not the top of the page) and show it large.
+- **Shortlist.** End with the 3–4 directions you would pursue, so the human can simply agree or swap one.
+- **One stage per page view.** Don't put feel, research, mood board and directions on the page at once. Keep technical or feature research (how a component should work, measurements) in its own document, linked, not on the board.
+- **Look in the human's own archive first** (for Rufus: `~/src/rufuspollock/ux-patterns`), then galleries such as Awwwards and siteInspire, then related projects whose design could be borrowed with tweaks (that is a direction in its own right).
 
 ## Screenshots for the mood board
 
