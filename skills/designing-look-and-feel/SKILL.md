@@ -64,7 +64,7 @@ Stage 1a **should** ship rough and small, within the first hour or two, so the r
 
 From Sutras (2026-11-20), where a first board was rejected ("mood board is weak. where is the true beauty in this"), a second was too much at once, and a third merged the pictures into named directions ("where's the actual mood board of existing sites that I'm looking at?"):
 
-- **Small first.** 4–6 references and 1–2 anti-references, then a reaction, then widen. Hours, not days, before the first feedback.
+- **Small first.** 4–6 references and 1–2 anti-references, then a reaction, then widen. Hours, not days, before the first feedback. **Widen into new territory**, not more of the thing the human already picked: "i didn't really need more emergence… i already know that."
 - **Pictures, not options.** A mood board is existing things to look at. Do not name directions, shortlist or recommend on the pictures page; that comes after the reaction, on its own page.
 - **Beauty is the test.** For every image ask "where is the true beauty in this?" Relevant but plain does not qualify. Capture the beautiful moment, which is often scrolled down or a detail, never the mere top of a page, and show it large: one or two across, not thumbnails.
 - **Real objects count.** Printed pages, calligraphy, book covers, ceramics, museum images with open licences, credited. Roughly half the board need not be websites.
