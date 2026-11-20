@@ -13,7 +13,7 @@
     const kids = (posts.data && posts.data.children) || [];
     const now = Date.now() / 1000;
     out.subs[s] = {
-      error: about.error || null,
+      error: about.error || null, rules_error: rules.error || null, posts_error: posts.error || null,
       subscribers: a.subscribers, over18: a.over18, type: a.subreddit_type,
       submission_type: a.submission_type, allow_images: a.allow_images,
       description: (a.public_description || "").slice(0, 300),

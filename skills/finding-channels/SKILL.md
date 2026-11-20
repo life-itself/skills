@@ -65,4 +65,5 @@ Then **Shortlist for this run**: numbered, with the segment, the format, who pos
 - **One generic channel list for all audiences.** The message and the channel go together, so each segment gets its own.
 - **Skipping the subject communities** of individual items in a catalogue.
 - **Cutting a whole channel type** ("any mailing list; any DM") instead of judging specific ones.
+- **Judging subreddits by topic and size.** Most large on-topic subs ban own-site links outright. In the first run (Reports that Matter, Nov 2026), 3 of 54 subreddits allowed a disclosed post. Read the live rules before shortlisting; small subs that welcome self-promotion beat big ones that don't.
 - **Stale or dead places.** A 500k subreddit with no posts this month is worth less than an active 3k one.
