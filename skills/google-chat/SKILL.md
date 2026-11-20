@@ -60,7 +60,7 @@ Learned from the first What's Cooking post, where `## heading` and `•` bullets
 - Bold is double asterisks `**bold**`. Single asterisks `*x*` render as italic here, not bold. Italic `_italic_`. Links `<url|label>`.
 - Bullets: start the line with `- ` (dash, space); confirmed working. Don't type a `•` character.
 - Short: a bold heading, a one-line tl;dr, then bullets. Blank line between blocks.
-- Links go at the end, **each in its own paragraph** (blank line between them), as `Label: <url|text>`. Two links on one line, or on lines with no blank line between them, run together into one line (seen in a What's Cooking post on 2026-11-20).
+- Links go at the end, **each in its own paragraph** (blank line between them), as `Label: <url|text>`. A What's Cooking post on 2026-11-20 put both links on one line and they ran together.
 - **Most important link first.** Chat seems to build its preview card from the first link in the message, so lead with the link that best explains the post: usually the changelog entry or write-up, then the thing itself (repo, folder, doc), then anything else.
 - Draft and show Rufus the final text before posting, as usual.
 
