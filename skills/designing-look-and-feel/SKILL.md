@@ -27,6 +27,7 @@ Rufus's process, from the slides kit (2026-10-31), where skipping steps cost thr
 - **One criterion taking over.** On the slides kit it was the Zoom size floor. Keep the feel and the real use in view.
 - **Misquoting the human's feedback.** Quote it exactly, with its scope ("too small" meant the small text, not everything).
 - **Reopening settled decisions.** Write each one down where the next agent will read it.
+- **Reskinning instead of designing.** A suggestion, not a rule, from Sutras (2026-11-21): when the human names a reference they love, try a near-copy of it first, with the real content, measured in a browser (computed font, size, weight and colour per text role; the whole page scrolled; how images are treated). Then simplify the copy into a system. Directions built as new colours on the existing CSS came out "not bad, but not great… 5/10"; a one-hour measured copy of the reference was "the way to go". Critique each mockup beside the reference, not only beside its siblings, and treat images (toning, crop, scale) as part of the design.
 
 The stages below are this cycle as it applies to a website's visual identity.
 
